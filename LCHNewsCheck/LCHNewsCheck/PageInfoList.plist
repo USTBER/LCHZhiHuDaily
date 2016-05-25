@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>pageInfos</key>
+	<array>
+		<string>遮盖+颜色渐变</string>
+		<string>缩放+颜色渐变</string>
+		<string>滚动条+颜色渐变</string>
+		<string>遮盖+缩放+没有颜色渐变</string>
+		<string>标题不滚动+遮盖+颜色渐变</string>
+		<string>自定义segmentView与ContentView</string>
+		<string>动态修改标题与内容</string>
+		<string>更改下标</string>
+	</array>
+	<key>firstAppInfo</key>
+	<string>标题不滚动的时候不要使用(缩放+遮盖)或(缩放+滚动条),其他效果之间可以组合!!,您可以大胆的去组合一下试试</string>
+	<key>secondAppInfo</key>
+	<string>如果对您有帮助,不妨给个star鼓励一下 github: https://github.com/USTBER</string>
+	<key>thirdAppInfo</key>
+	<string>如果您在使用过程中发现问题,请联系qq:854136959或者发邮件到这个qq邮箱给我</string>
+</dict>
+</plist>

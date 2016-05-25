@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>蒙哥马利</string>
+		<key>introduce</key>
+		<string>伯纳德·劳·蒙哥马利（Bernard Law Montgomery，1887年11月17日-1976年3月25日，享年八十九岁。）[1]  ，第一代阿拉曼的蒙哥马利子爵，英国陆军元帅、军事家，在第二次世界大战爆发期间，是盟军最杰出的将领之一。</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>图哈切夫斯基</string>
+		<key>introduce</key>
+		<string>米哈伊尔·尼古拉耶维奇·图哈切夫斯基(1893.2.16—1937.6.11)，1893年生于斯摩棱斯克省多罗戈布日县亚历山德罗夫斯科耶庄园（今斯摩棱斯克省萨福诺沃区斯列德涅沃村附近），1914年毕业于亚历山大军事学校，获中尉军衔。参加过第一次世界大战，1915年被俘，1917年逃回俄国。1918年加入苏联共产党，并参加苏军。（Михаил. Николаевич. Тухачевский）苏联元帅、苏联军事家、军事战略学家、军事理论家 苏联最早五元帅之一。军事战略学家。[1] </string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>隆美尔</string>
+		<key>introduce</key>
+		<string>埃尔温·约翰尼斯·尤根·隆美尔（德语：Erwin Rommel），纳粹德国的陆军元帅，著名的军事家、战术家、理论家，绰号“沙漠之狐、帝国之鹰”。隆美尔与曼施坦因和古德里安，被后人并称为第二次世界大战期间，纳粹德国的三大名将[1]  。</string>
+	</dict>
+</array>
+</plist>
