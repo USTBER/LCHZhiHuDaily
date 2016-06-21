@@ -52,7 +52,7 @@
     LCHModel *model = self.models[indexPath.row];
     cell.nameLabel.text = model.name;
     cell.introduceLabel.text = model.introduce;
-    
+    [cell layoutSubviews];
     return cell;
 }
 

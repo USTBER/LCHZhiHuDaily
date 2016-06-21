@@ -10,21 +10,29 @@
 #import "LCHCollectionViewCell.h"
 #import "LCHModel.h"
 
-@interface ViewController ()
-<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface ViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, copy) NSArray *models;
-
+@property (nonatomic, strong) NSArray *models;
 @end
 
 @implementation ViewController
 
 
 #pragma mark - lifeCircle
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+    
+    }
+    return self;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
     [self.view addSubview:self.collectionView];
 }
 
@@ -34,13 +42,12 @@
 }
 
 #pragma mark - UICollectionViewDataSource
-
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     return self.models.count;
 }
 
+//collectionView 代理
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     LCHCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"reuse" forIndexPath:indexPath];
@@ -74,6 +81,7 @@
         
         return _collectionView;
     }
+    
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 5;
     layout.minimumInteritemSpacing = 5;

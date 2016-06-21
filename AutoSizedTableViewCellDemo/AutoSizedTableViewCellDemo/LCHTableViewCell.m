@@ -32,31 +32,34 @@
         [self.contentView addSubview:_introduceLabel];
         
         self.contentView.backgroundColor = [UIColor greenColor];
-        
-        
-        __weak typeof(self) weakSelf = self;
-        __weak typeof(_introduceLabel) weakNameLabel = _nameLabel;
-        
-        [_nameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(weakSelf.contentView);
-            make.top.equalTo(weakSelf.contentView).offset(10);
-            make.width.greaterThanOrEqualTo(@0.1);
-            make.width.lessThanOrEqualTo(@200);
-            make.height.greaterThanOrEqualTo(@0.1);
-        }];
-        
-        [_introduceLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(weakSelf.contentView);
-            make.top.mas_equalTo(weakNameLabel.mas_bottom).offset(10);
-            make.width.greaterThanOrEqualTo(@0.1);
-            make.height.greaterThanOrEqualTo(@0.1);
-            make.width.lessThanOrEqualTo(@300);
-            make.bottom.equalTo(weakSelf.contentView).offset(-10).priorityLow();
-        }];
     }
     
     return self;
+    
+}
 
+- (void)layoutSubviews {
+    
+    [super layoutSubviews];
+    __weak typeof(self) weakSelf = self;
+    __weak typeof(_introduceLabel) weakNameLabel = _nameLabel;
+    
+    [_nameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(weakSelf.contentView);
+        make.top.equalTo(weakSelf.contentView).offset(10);
+        make.width.greaterThanOrEqualTo(@0.1);
+        make.width.lessThanOrEqualTo(@200);
+        make.height.greaterThanOrEqualTo(@0.1);
+    }];
+    
+    [_introduceLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(weakSelf.contentView);
+        make.top.mas_equalTo(weakNameLabel.mas_bottom).offset(10);
+        make.width.greaterThanOrEqualTo(@0.1);
+        make.height.greaterThanOrEqualTo(@0.1);
+        make.width.lessThanOrEqualTo(@300);
+        make.bottom.equalTo(weakSelf.contentView).offset(-10).priorityLow();
+    }];
 }
 
 @end
