@@ -67,6 +67,11 @@ static float const animatinDuration = 0.2f;
     UIScrollView *scrollView = object;
     CGFloat offsetY = scrollView.contentOffset.y;
     
+    if (scrollView.contentSize.height == 0) {
+        
+        return;
+    }
+    
     if (offsetY < scrollView.contentSize.height - scrollView.height) {
         return;
     }else if (offsetY > scrollView.contentSize.height + 60 - scrollView.height) {
@@ -118,9 +123,11 @@ static float const animatinDuration = 0.2f;
     return _arrowImage;
 }
 
-- (void)dealloc{
-    
-}
+//- (void)dealloc{
+// 
+//    [self.scrollView removeObserver:self forKeyPath:@"contentOffset"];
+//
+//}
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)

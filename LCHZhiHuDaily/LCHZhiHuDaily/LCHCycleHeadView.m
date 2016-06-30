@@ -21,7 +21,7 @@
     LCHCycleHeadView *cycleHeadView = [[LCHCycleHeadView alloc] init];
     cycleHeadView.scrollView = scrollView;
     [scrollView addObserver:cycleHeadView forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-
+    
     return cycleHeadView;
 }
 
@@ -30,18 +30,28 @@
     UIScrollView *scrollView = object;
     CGFloat offSetY = scrollView.contentOffset.y;
     if (offSetY<=0&&offSetY>=-kHeight(90)) {
-        self.frame = CGRectMake(0, -kHeight(45) - 0.5 * offSetY, kScreenWidth, kHeight(265) - 0.5 * offSetY);
+        
+        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(-kHeight(45) - 0.5 * offSetY);
+            make.height.mas_equalTo(kHeight(265) - 0.5 * offSetY);
+        }];
+        
     }else if(offSetY<-kHeight(90)){
         self.scrollView.contentOffset = CGPointMake(0, -kHeight(90));
     }else if(offSetY <= kHeight(500)) {
-        self.y = -kHeight(45) - offSetY;
+        
+        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(-kHeight(45) - 0.5 * offSetY);
+            make.height.mas_equalTo(kHeight(265) - 0.5 * offSetY);
+        }];
     }
-
 }
 
 - (void)dealloc {
     
-    [_scrollView removeObserver:self forKeyPath:@"contentOffset"];
+    if (_scrollView) {
+        [_scrollView removeObserver:self forKeyPath:@"contentOffset"];
+    }
 }
 
 @end

@@ -32,21 +32,23 @@
     self.textLabel.centerX = self.centerX;
 }
 
-- (void)setDate:(NSDate *)date {
+- (void)setDateString:(NSString *)dateString {
     
-    _date = date;
+    _dateString = dateString;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyyMMdd"];
+    NSDate *date = [dateFormatter dateFromString:dateString];
     [dateFormatter setDateFormat:@"MM月dd日 EEEE"];
-    NSString *dateString = [dateFormatter stringFromDate:date];
+    NSString *text = [dateFormatter stringFromDate:date];
+    
     self.textLabel.attributedText = [[NSAttributedString alloc]
-                                     initWithString:dateString
+                                     initWithString:text
                                      attributes:
                                      @{NSFontAttributeName:
-                                           [UIFont systemFontOfSize:18] ,
+                                           [UIFont systemFontOfSize:14] ,
                                        NSForegroundColorAttributeName:
                                            [UIColor whiteColor]}];
-    
 }
 
 @end

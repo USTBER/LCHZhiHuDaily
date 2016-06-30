@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0B39A53D77ED9F939215CBCD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4A325F358764FA8AFAC516 /* libPods.a */; };
+		1854C6F81D225912003760B5 /* LCHThemeDetailNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854C6F71D225912003760B5 /* LCHThemeDetailNewsModel.m */; };
+		1854C6FB1D2267F9003760B5 /* LCHRecommenders.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854C6FA1D2267F9003760B5 /* LCHRecommenders.m */; };
+		1854C6FE1D24BECC003760B5 /* LCHThemeContainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854C6FD1D24BECC003760B5 /* LCHThemeContainController.m */; };
 		1880CACD1D0E894800F47E02 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880CACC1D0E894800F47E02 /* main.m */; };
 		1880CAD01D0E894800F47E02 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880CACF1D0E894800F47E02 /* AppDelegate.m */; };
 		1880CAD61D0E894800F47E02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1880CAD41D0E894800F47E02 /* Main.storyboard */; };
@@ -52,9 +55,32 @@
 		1880CBAD1D13F9DE00F47E02 /* UIColor+LCHRandomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880CBAC1D13F9DE00F47E02 /* UIColor+LCHRandomColor.m */; };
 		18886E371D17D63A0076A384 /* LCHHomePageTopNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18886E361D17D63A0076A384 /* LCHHomePageTopNewsModel.m */; };
 		18886E3A1D19104B0076A384 /* NSDate+LCHExpand.m in Sources */ = {isa = PBXBuildFile; fileRef = 18886E391D19104B0076A384 /* NSDate+LCHExpand.m */; };
+		189B3AD91D222BF3009A9008 /* LCHThemeDetailNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189B3AD81D222BF3009A9008 /* LCHThemeDetailNewsController.m */; };
+		18B463D51D1A537B00CD02AA /* LCHDetailNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B463D41D1A537B00CD02AA /* LCHDetailNewsModel.m */; };
+		18B463DE1D1BDA9F00CD02AA /* LCHConsoleBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B463DD1D1BDA9F00CD02AA /* LCHConsoleBar.m */; };
+		18B463E11D1BE39800CD02AA /* LCHConsoleBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B463E01D1BE39800CD02AA /* LCHConsoleBarConfig.m */; };
+		18B463E41D1BF26900CD02AA /* LCHContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B463E31D1BF26900CD02AA /* LCHContainerController.m */; };
+		18B463E71D1BFD8700CD02AA /* LCHNewsExtraData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B463E61D1BFD8700CD02AA /* LCHNewsExtraData.m */; };
+		18B464541D1D3BD100CD02AA /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B464531D1D3BD100CD02AA /* UINavigationController+FDFullscreenPopGesture.m */; };
+		18B464591D20BBE100CD02AA /* LCHBlackBottomBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B464581D20BBE100CD02AA /* LCHBlackBottomBar.m */; };
+		18B464621D20C5B200CD02AA /* LCHLeafController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B464611D20C5B200CD02AA /* LCHLeafController.m */; };
+		18B464651D20C6E000CD02AA /* LCHLeafPageConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B464641D20C6E000CD02AA /* LCHLeafPageConfig.m */; };
+		18B464681D20C79C00CD02AA /* LCHLeafPageTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B464671D20C79C00CD02AA /* LCHLeafPageTopBar.m */; };
+		18B4646B1D20FECD00CD02AA /* LCHWebImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B4646A1D20FECD00CD02AA /* LCHWebImageView.m */; };
+		18B4646E1D21001D00CD02AA /* LCHTopBarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B4646D1D21001D00CD02AA /* LCHTopBarModel.m */; };
+		18B464821D2123EA00CD02AA /* LCHThemeDetailNewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B464811D2123EA00CD02AA /* LCHThemeDetailNewsView.m */; };
+		18B464851D2124DB00CD02AA /* LCHRecommendersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B464841D2124DB00CD02AA /* LCHRecommendersView.m */; };
+		18B464921D212C5A00CD02AA /* LCHDetailNewsConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B464911D212C5A00CD02AA /* LCHDetailNewsConfig.m */; };
+		18B464951D21309400CD02AA /* LCHThemeDetailNewsConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B464941D21309400CD02AA /* LCHThemeDetailNewsConfig.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1854C6F61D225912003760B5 /* LCHThemeDetailNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHThemeDetailNewsModel.h; sourceTree = "<group>"; };
+		1854C6F71D225912003760B5 /* LCHThemeDetailNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHThemeDetailNewsModel.m; sourceTree = "<group>"; };
+		1854C6F91D2267F9003760B5 /* LCHRecommenders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHRecommenders.h; sourceTree = "<group>"; };
+		1854C6FA1D2267F9003760B5 /* LCHRecommenders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHRecommenders.m; sourceTree = "<group>"; };
+		1854C6FC1D24BECC003760B5 /* LCHThemeContainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHThemeContainController.h; sourceTree = "<group>"; };
+		1854C6FD1D24BECC003760B5 /* LCHThemeContainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHThemeContainController.m; sourceTree = "<group>"; };
 		1880CAC81D0E894800F47E02 /* LCHZhiHuDaily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LCHZhiHuDaily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1880CACC1D0E894800F47E02 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1880CACE1D0E894800F47E02 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -143,6 +169,40 @@
 		18886E361D17D63A0076A384 /* LCHHomePageTopNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHHomePageTopNewsModel.m; sourceTree = "<group>"; };
 		18886E381D19104B0076A384 /* NSDate+LCHExpand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+LCHExpand.h"; sourceTree = "<group>"; };
 		18886E391D19104B0076A384 /* NSDate+LCHExpand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+LCHExpand.m"; sourceTree = "<group>"; };
+		189B3AD71D222BF3009A9008 /* LCHThemeDetailNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHThemeDetailNewsController.h; sourceTree = "<group>"; };
+		189B3AD81D222BF3009A9008 /* LCHThemeDetailNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHThemeDetailNewsController.m; sourceTree = "<group>"; };
+		18B463D31D1A537B00CD02AA /* LCHDetailNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHDetailNewsModel.h; sourceTree = "<group>"; };
+		18B463D41D1A537B00CD02AA /* LCHDetailNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHDetailNewsModel.m; sourceTree = "<group>"; };
+		18B463DC1D1BDA9F00CD02AA /* LCHConsoleBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHConsoleBar.h; sourceTree = "<group>"; };
+		18B463DD1D1BDA9F00CD02AA /* LCHConsoleBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHConsoleBar.m; sourceTree = "<group>"; };
+		18B463DF1D1BE39800CD02AA /* LCHConsoleBarConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHConsoleBarConfig.h; sourceTree = "<group>"; };
+		18B463E01D1BE39800CD02AA /* LCHConsoleBarConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHConsoleBarConfig.m; sourceTree = "<group>"; };
+		18B463E21D1BF26900CD02AA /* LCHContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHContainerController.h; sourceTree = "<group>"; };
+		18B463E31D1BF26900CD02AA /* LCHContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHContainerController.m; sourceTree = "<group>"; };
+		18B463E51D1BFD8700CD02AA /* LCHNewsExtraData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHNewsExtraData.h; sourceTree = "<group>"; };
+		18B463E61D1BFD8700CD02AA /* LCHNewsExtraData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHNewsExtraData.m; sourceTree = "<group>"; };
+		18B464521D1D3BD100CD02AA /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
+		18B464531D1D3BD100CD02AA /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
+		18B464571D20BBE100CD02AA /* LCHBlackBottomBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHBlackBottomBar.h; sourceTree = "<group>"; };
+		18B464581D20BBE100CD02AA /* LCHBlackBottomBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHBlackBottomBar.m; sourceTree = "<group>"; };
+		18B464601D20C5B200CD02AA /* LCHLeafController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHLeafController.h; sourceTree = "<group>"; };
+		18B464611D20C5B200CD02AA /* LCHLeafController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHLeafController.m; sourceTree = "<group>"; };
+		18B464631D20C6E000CD02AA /* LCHLeafPageConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHLeafPageConfig.h; sourceTree = "<group>"; };
+		18B464641D20C6E000CD02AA /* LCHLeafPageConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHLeafPageConfig.m; sourceTree = "<group>"; };
+		18B464661D20C79C00CD02AA /* LCHLeafPageTopBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHLeafPageTopBar.h; sourceTree = "<group>"; };
+		18B464671D20C79C00CD02AA /* LCHLeafPageTopBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHLeafPageTopBar.m; sourceTree = "<group>"; };
+		18B464691D20FECD00CD02AA /* LCHWebImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHWebImageView.h; sourceTree = "<group>"; };
+		18B4646A1D20FECD00CD02AA /* LCHWebImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHWebImageView.m; sourceTree = "<group>"; };
+		18B4646C1D21001D00CD02AA /* LCHTopBarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHTopBarModel.h; sourceTree = "<group>"; };
+		18B4646D1D21001D00CD02AA /* LCHTopBarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHTopBarModel.m; sourceTree = "<group>"; };
+		18B464801D2123EA00CD02AA /* LCHThemeDetailNewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHThemeDetailNewsView.h; sourceTree = "<group>"; };
+		18B464811D2123EA00CD02AA /* LCHThemeDetailNewsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHThemeDetailNewsView.m; sourceTree = "<group>"; };
+		18B464831D2124DB00CD02AA /* LCHRecommendersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHRecommendersView.h; sourceTree = "<group>"; };
+		18B464841D2124DB00CD02AA /* LCHRecommendersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHRecommendersView.m; sourceTree = "<group>"; };
+		18B464901D212C5A00CD02AA /* LCHDetailNewsConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHDetailNewsConfig.h; sourceTree = "<group>"; };
+		18B464911D212C5A00CD02AA /* LCHDetailNewsConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHDetailNewsConfig.m; sourceTree = "<group>"; };
+		18B464931D21309400CD02AA /* LCHThemeDetailNewsConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHThemeDetailNewsConfig.h; sourceTree = "<group>"; };
+		18B464941D21309400CD02AA /* LCHThemeDetailNewsConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHThemeDetailNewsConfig.m; sourceTree = "<group>"; };
 		23D8F48A09A952F51417A663 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2F817DCF237A046B6A3D16AB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7C4A325F358764FA8AFAC516 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,10 +243,12 @@
 			children = (
 				1880CB5D1D117D5E00F47E02 /* Other */,
 				1880CAEB1D0E8B7F00F47E02 /* Global */,
-				1880CAEA1D0E8B6A00F47E02 /* LeftSideDrawerPage */,
-				1880CAE91D0E8B5A00F47E02 /* DetailNewsPage */,
-				1880CAE81D0E8B4B00F47E02 /* HomePage */,
 				1880CAE71D0E8B4200F47E02 /* ThemePage */,
+				18B4647A1D211EA000CD02AA /* ThemeDetailNewsPage */,
+				1880CAEA1D0E8B6A00F47E02 /* LeftSideDrawerPage */,
+				1880CAE81D0E8B4B00F47E02 /* HomePage */,
+				1880CAE91D0E8B5A00F47E02 /* DetailNewsPage */,
+				18B4645A1D20C51700CD02AA /* LeafPage */,
 				1880CAE61D0E8B3A00F47E02 /* LaunchPage */,
 				1880CAE51D0E8B2D00F47E02 /* AppDelegate */,
 				1880CACB1D0E894800F47E02 /* Supporting Files */,
@@ -297,6 +359,8 @@
 				1880CB841D12814500F47E02 /* NSTimer+LCHAddition.m */,
 				18886E381D19104B0076A384 /* NSDate+LCHExpand.h */,
 				18886E391D19104B0076A384 /* NSDate+LCHExpand.m */,
+				18B464521D1D3BD100CD02AA /* UINavigationController+FDFullscreenPopGesture.h */,
+				18B464531D1D3BD100CD02AA /* UINavigationController+FDFullscreenPopGesture.m */,
 			);
 			name = Catagory;
 			sourceTree = "<group>";
@@ -352,6 +416,8 @@
 			children = (
 				1880CB2E1D0EC81200F47E02 /* LCHDetailNewsViewController.h */,
 				1880CB2F1D0EC81200F47E02 /* LCHDetailNewsViewController.m */,
+				18B463E21D1BF26900CD02AA /* LCHContainerController.h */,
+				18B463E31D1BF26900CD02AA /* LCHContainerController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -359,6 +425,10 @@
 		1880CAF41D0E8BF400F47E02 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18B463D31D1A537B00CD02AA /* LCHDetailNewsModel.h */,
+				18B463D41D1A537B00CD02AA /* LCHDetailNewsModel.m */,
+				18B463E51D1BFD8700CD02AA /* LCHNewsExtraData.h */,
+				18B463E61D1BFD8700CD02AA /* LCHNewsExtraData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -366,6 +436,8 @@
 		1880CAF51D0E8BFA00F47E02 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18B463DC1D1BDA9F00CD02AA /* LCHConsoleBar.h */,
+				18B463DD1D1BDA9F00CD02AA /* LCHConsoleBar.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -493,6 +565,10 @@
 		1880CB111D0E8F2200F47E02 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				18B464901D212C5A00CD02AA /* LCHDetailNewsConfig.h */,
+				18B464911D212C5A00CD02AA /* LCHDetailNewsConfig.m */,
+				18B463DF1D1BE39800CD02AA /* LCHConsoleBarConfig.h */,
+				18B463E01D1BE39800CD02AA /* LCHConsoleBarConfig.m */,
 			);
 			name = Config;
 			sourceTree = "<group>";
@@ -558,6 +634,118 @@
 				1880CBA91D13DF2900F47E02 /* LCHCycleHeadView.m */,
 			);
 			name = LCHTopHeader;
+			sourceTree = "<group>";
+		};
+		18B4645A1D20C51700CD02AA /* LeafPage */ = {
+			isa = PBXGroup;
+			children = (
+				18B4645E1D20C54700CD02AA /* Config */,
+				18B4645D1D20C53700CD02AA /* Model */,
+				18B4645C1D20C53200CD02AA /* Controller */,
+				18B4645B1D20C52C00CD02AA /* View */,
+			);
+			name = LeafPage;
+			sourceTree = "<group>";
+		};
+		18B4645B1D20C52C00CD02AA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18B464571D20BBE100CD02AA /* LCHBlackBottomBar.h */,
+				18B464581D20BBE100CD02AA /* LCHBlackBottomBar.m */,
+				18B464661D20C79C00CD02AA /* LCHLeafPageTopBar.h */,
+				18B464671D20C79C00CD02AA /* LCHLeafPageTopBar.m */,
+				18B464691D20FECD00CD02AA /* LCHWebImageView.h */,
+				18B4646A1D20FECD00CD02AA /* LCHWebImageView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		18B4645C1D20C53200CD02AA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18B464601D20C5B200CD02AA /* LCHLeafController.h */,
+				18B464611D20C5B200CD02AA /* LCHLeafController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		18B4645D1D20C53700CD02AA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18B4646C1D21001D00CD02AA /* LCHTopBarModel.h */,
+				18B4646D1D21001D00CD02AA /* LCHTopBarModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		18B4645E1D20C54700CD02AA /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				18B464631D20C6E000CD02AA /* LCHLeafPageConfig.h */,
+				18B464641D20C6E000CD02AA /* LCHLeafPageConfig.m */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		18B4647A1D211EA000CD02AA /* ThemeDetailNewsPage */ = {
+			isa = PBXGroup;
+			children = (
+				18B4647F1D211ED100CD02AA /* Config */,
+				18B4647E1D211ECA00CD02AA /* Tools */,
+				18B4647D1D211EC500CD02AA /* Controller */,
+				18B4647C1D211EC100CD02AA /* Model */,
+				18B4647B1D211EBB00CD02AA /* View */,
+			);
+			name = ThemeDetailNewsPage;
+			sourceTree = "<group>";
+		};
+		18B4647B1D211EBB00CD02AA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18B464801D2123EA00CD02AA /* LCHThemeDetailNewsView.h */,
+				18B464811D2123EA00CD02AA /* LCHThemeDetailNewsView.m */,
+				18B464831D2124DB00CD02AA /* LCHRecommendersView.h */,
+				18B464841D2124DB00CD02AA /* LCHRecommendersView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		18B4647C1D211EC100CD02AA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1854C6F61D225912003760B5 /* LCHThemeDetailNewsModel.h */,
+				1854C6F71D225912003760B5 /* LCHThemeDetailNewsModel.m */,
+				1854C6F91D2267F9003760B5 /* LCHRecommenders.h */,
+				1854C6FA1D2267F9003760B5 /* LCHRecommenders.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		18B4647D1D211EC500CD02AA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				189B3AD71D222BF3009A9008 /* LCHThemeDetailNewsController.h */,
+				189B3AD81D222BF3009A9008 /* LCHThemeDetailNewsController.m */,
+				1854C6FC1D24BECC003760B5 /* LCHThemeContainController.h */,
+				1854C6FD1D24BECC003760B5 /* LCHThemeContainController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		18B4647E1D211ECA00CD02AA /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
+		18B4647F1D211ED100CD02AA /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				18B464931D21309400CD02AA /* LCHThemeDetailNewsConfig.h */,
+				18B464941D21309400CD02AA /* LCHThemeDetailNewsConfig.m */,
+			);
+			name = Config;
 			sourceTree = "<group>";
 		};
 		3EFE648EC331E1502A46EA5A /* Frameworks */ = {
@@ -705,6 +893,7 @@
 				1880CB851D12814500F47E02 /* NSTimer+LCHAddition.m in Sources */,
 				1880CB7C1D127B2900F47E02 /* LCHHomePageBeforeJsonModel.m in Sources */,
 				1880CB331D0EC82200F47E02 /* LCHLeftSideViewController.m in Sources */,
+				18B463E71D1BFD8700CD02AA /* LCHNewsExtraData.m in Sources */,
 				1880CB731D12477500F47E02 /* LCHHomePageConfig.m in Sources */,
 				1880CB1D1D0EA02D00F47E02 /* UIView+LCHExpand.m in Sources */,
 				1880CAD91D0E894800F47E02 /* LCHZhiHuDaily.xcdatamodeld in Sources */,
@@ -712,6 +901,10 @@
 				1880CB6F1D11840A00F47E02 /* DetailFooterView.m in Sources */,
 				1880CB0D1D0E8CB500F47E02 /* LCHLaunchModel.m in Sources */,
 				1880CB461D0FA8D000F47E02 /* LCHThemeModel.m in Sources */,
+				18B464921D212C5A00CD02AA /* LCHDetailNewsConfig.m in Sources */,
+				18B464651D20C6E000CD02AA /* LCHLeafPageConfig.m in Sources */,
+				1854C6FE1D24BECC003760B5 /* LCHThemeContainController.m in Sources */,
+				18B4646E1D21001D00CD02AA /* LCHTopBarModel.m in Sources */,
 				1880CB4D1D10F14300F47E02 /* LCHThemeNewsModel.m in Sources */,
 				1880CAD01D0E894800F47E02 /* AppDelegate.m in Sources */,
 				1880CB3D1D0FA57100F47E02 /* LCHBaseTableViewCell.m in Sources */,
@@ -719,26 +912,41 @@
 				1880CB2D1D0EC7EB00F47E02 /* LCHHomeViewController.m in Sources */,
 				1880CB401D0FA72900F47E02 /* LCHLeftSideDrawerCell.m in Sources */,
 				1880CB5C1D10FE1B00F47E02 /* LCHThemeNewsCell.m in Sources */,
+				18B464681D20C79C00CD02AA /* LCHLeafPageTopBar.m in Sources */,
+				18B464621D20C5B200CD02AA /* LCHLeafController.m in Sources */,
 				1880CB301D0EC81200F47E02 /* LCHDetailNewsViewController.m in Sources */,
 				1880CB2A1D0EC7D900F47E02 /* LCHThemeViewController.m in Sources */,
 				1880CB491D0FA8DA00F47E02 /* LCHThemesJsonModel.m in Sources */,
+				18B4646B1D20FECD00CD02AA /* LCHWebImageView.m in Sources */,
 				1880CACD1D0E894800F47E02 /* main.m in Sources */,
+				18B464851D2124DB00CD02AA /* LCHRecommendersView.m in Sources */,
+				1854C6FB1D2267F9003760B5 /* LCHRecommenders.m in Sources */,
 				1880CBA41D13DEFF00F47E02 /* LCHCycleView.m in Sources */,
+				18B463DE1D1BDA9F00CD02AA /* LCHConsoleBar.m in Sources */,
 				1880CB761D127AE300F47E02 /* LCHHomePageNewsModel.m in Sources */,
+				18B464541D1D3BD100CD02AA /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				1880CB701D11840A00F47E02 /* DetailHeaderView.m in Sources */,
+				18B464591D20BBE100CD02AA /* LCHBlackBottomBar.m in Sources */,
+				189B3AD91D222BF3009A9008 /* LCHThemeDetailNewsController.m in Sources */,
+				18B464821D2123EA00CD02AA /* LCHThemeDetailNewsView.m in Sources */,
 				18886E371D17D63A0076A384 /* LCHHomePageTopNewsModel.m in Sources */,
 				1880CBAA1D13DF2900F47E02 /* LCHCycleHeadView.m in Sources */,
+				1854C6F81D225912003760B5 /* LCHThemeDetailNewsModel.m in Sources */,
 				1880CB161D0E8F5800F47E02 /* LCHLaunchConfig.m in Sources */,
 				1880CB9E1D13CD1500F47E02 /* LCHTopHeaderConfig.m in Sources */,
 				1880CB501D10F17300F47E02 /* LCHThemeNewsJsonModel.m in Sources */,
+				18B463E41D1BF26900CD02AA /* LCHContainerController.m in Sources */,
+				18B464951D21309400CD02AA /* LCHThemeDetailNewsConfig.m in Sources */,
 				1880CB561D10FCC600F47E02 /* LCHTopImageView.m in Sources */,
 				1880CB201D0EA09900F47E02 /* UIImageView+LCHRoundRect.m in Sources */,
+				18B463E11D1BE39800CD02AA /* LCHConsoleBarConfig.m in Sources */,
 				1880CB3A1D0FA4F400F47E02 /* LCHLeftSideDrawerConfig.m in Sources */,
 				1880CB791D127B0900F47E02 /* LCHHomePageLatestJsonModel.m in Sources */,
 				18886E3A1D19104B0076A384 /* NSDate+LCHExpand.m in Sources */,
 				1880CB191D0E951900F47E02 /* LCHDataManager.m in Sources */,
 				1880CB8E1D1390F900F47E02 /* LCHHomePageTableHeaderView.m in Sources */,
 				1880CB971D13C88800F47E02 /* LCHTopHeadView.m in Sources */,
+				18B463D51D1A537B00CD02AA /* LCHDetailNewsModel.m in Sources */,
 				1880CB271D0EC6AA00F47E02 /* LCHMainViewController.m in Sources */,
 				1880CB6E1D11840A00F47E02 /* CircleRefreshView.m in Sources */,
 			);

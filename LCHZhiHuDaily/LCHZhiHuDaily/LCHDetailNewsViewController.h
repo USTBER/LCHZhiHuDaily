@@ -10,4 +10,6 @@
 
 @interface LCHDetailNewsViewController : UIViewController
 
+@property (nonatomic, strong) NSString *newsID;
+
 @end

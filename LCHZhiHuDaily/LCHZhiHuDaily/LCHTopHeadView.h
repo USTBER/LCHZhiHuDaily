@@ -14,4 +14,8 @@
 @property (nonatomic, readonly, strong) UILabel *titleLabel;
 @property (nonatomic, readonly, strong) UILabel *sourceLabel;
 
++ (id)attachToScrollView:(UIWebView *)webView;
+
+- (void)observeWebView:(UIWebView *)webView;
+
 @end

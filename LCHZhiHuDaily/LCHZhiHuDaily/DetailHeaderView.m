@@ -118,9 +118,9 @@ static float const animatinDuration = 0.2f;
     return _arrowImage;
 }
 
-- (void)dealloc{
-    
-}
+//- (void)dealloc{
+//    [self.scrollView removeObserver:self forKeyPath:@"contentOffset"];
+//}
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)

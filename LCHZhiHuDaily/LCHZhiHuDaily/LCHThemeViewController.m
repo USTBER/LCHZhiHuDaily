@@ -12,6 +12,9 @@
 #import "LCHThemePageConfig.h"
 #import "LCHThemeNewsCell.h"
 #import "CircleRefreshView.h"
+#import "LCHThemeDetailNewsController.h"
+
+#import "LCHThemeContainController.h"
 
 @interface LCHThemeViewController ()
 <UITableViewDataSource, UITableViewDelegate>
@@ -173,8 +176,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    [self.view setNeedsLayout];
-    [self.view layoutIfNeeded];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    LCHThemeNewsModel *newsModel = self.themeNewsModels[indexPath.row];
+//    LCHThemeDetailNewsController *themeDetailNewsController = [[LCHThemeDetailNewsController alloc] init];
+//    themeDetailNewsController.newsID = [NSString stringWithFormat:@"%ld", (long)newsModel.newsID];
+//    [self.navigationController pushViewController:themeDetailNewsController animated:YES];
+
+    
+    LCHThemeContainController *containController = [[LCHThemeContainController alloc] init];
+    containController.newsID = [NSString stringWithFormat:@"%ld", (long)newsModel.newsID];
+    
+    [self.navigationController pushViewController:containController animated:YES];
+
+
 }
 
 #pragma mark - lazy loading

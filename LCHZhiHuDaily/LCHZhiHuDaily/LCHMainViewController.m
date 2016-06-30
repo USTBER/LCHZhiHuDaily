@@ -12,6 +12,7 @@
 #import "LCHThemeViewController.h"
 #import "LCHLeftSideViewController.h"
 #import "LCHThemeModel.h"
+#import "AppDelegate.h"
 
 
 #import "LCHLaunchConfig.h"
@@ -43,8 +44,11 @@
         leftSideViewController.delegate = self;
         
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.homeViewController];
-        navigationController.navigationBarHidden = YES;
         
+        navigationController.navigationBarHidden = YES;
+        navigationController.navigationBar.hidden = YES;
+        
+        self.naviController = navigationController;
         self.leftDrawerViewController = leftSideViewController;
         self.centerViewController = navigationController;
         [self setMaximumLeftDrawerWidth:kWidth(kLeftDrawerWidth)];
@@ -52,7 +56,10 @@
         [self setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
         [self setShouldStretchDrawer:NO];
         [self setShowsShadow:NO];
+        
     });
+    AppDelegate *applicationDelegate = [UIApplication sharedApplication].delegate;
+    applicationDelegate.mainViewController = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,17 +71,19 @@
 
 - (void)switchToHome {
     
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.homeViewController];
+    navigationController.navigationBarHidden = YES;
     
-    
+    [self setCenterViewController:navigationController withCloseAnimation:YES completion:nil];
 }
 
 - (void)switchToOtherTheme:(LCHThemeModel *)themeModel {
-
+    
     self.themeViewController.themeModel = themeModel;
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.themeViewController];
     navigationController.navigationBarHidden = YES;
-
+    
     [self setCenterViewController:navigationController withCloseAnimation:YES completion:nil];
 }
 

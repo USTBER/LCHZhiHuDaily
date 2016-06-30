@@ -68,7 +68,15 @@
         }];
         
         [self configSubViews];
-        _automaticScrollTimer = [NSTimer scheduledTimerWithTimeInterval:_duration target:self selector:@selector(automaticScroll) userInfo:nil repeats:YES];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            _automaticScrollTimer = [NSTimer timerWithTimeInterval:_duration target:self selector:@selector(automaticScroll) userInfo:nil repeats:YES];
+            [[NSRunLoop currentRunLoop] addTimer:_automaticScrollTimer forMode:NSRunLoopCommonModes];
+            [[NSRunLoop currentRunLoop] run];
+        });
+        
+
     }
     
     return self;
@@ -147,15 +155,19 @@
     
     _currentPageNum ++;
     
-    [UIView animateWithDuration:0.3 animations:^{
-        [_scrollView setContentOffset:CGPointMake(_currentPageNum * _scrollView.width, 0) animated:NO];
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [self moveToValidePage];
-            _pageControl.currentPage = _currentPageNum - 1;
-            
-        }
-    }];
+    _currentPageNum = _currentPageNum % (_totalPageNum + 2);
+
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.3 animations:^{
+            [_scrollView setContentOffset:CGPointMake(_currentPageNum * _scrollView.width, 0) animated:NO];
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [self moveToValidePage];
+                _pageControl.currentPage = _currentPageNum - 1;
+            }
+        }];
+    });
 }
 
 - (void)moveToValidePage {
@@ -163,13 +175,13 @@
     if (_totalPageNum == 0) {
         return;
     }
-    if (_currentPageNum == 0) {
+    if (_currentPageNum <= 0) {
         _currentPageNum =  _viewsForCycle.count - 2;
         [_scrollView setContentOffset:CGPointMake(_currentPageNum * _scrollView.width, 0) animated:NO];
         
         return;
     }
-    if (_currentPageNum == _viewsForCycle.count - 1) {
+    if (_currentPageNum >= _viewsForCycle.count - 1) {
         _currentPageNum = 1;
         [_scrollView setContentOffset:CGPointMake(_currentPageNum * _scrollView.width, 0) animated:NO];
         
@@ -254,5 +266,6 @@
     _dataSource = dataSource;
     [self reloadData];
 }
+
 
 @end

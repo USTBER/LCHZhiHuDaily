@@ -16,12 +16,24 @@
 #import "LCHHomePageNewsModel.h"
 #import "LCHHomePageLatestJsonModel.h"
 #import "LCHHomePageBeforeJsonModel.h"
+#import "LCHDetailNewsModel.h"
+#import "LCHThemeDetailNewsModel.h"
+#import "LCHNewsExtraData.h"
+
 #import <AFNetworking.h>
 #import <YYModel.h>
 
 typedef NS_ENUM(NSUInteger, LCHDataManagerErrorCode) {
     LCHDataManagerReturnValueNilError
 };
+
+typedef void (^SuccessBlockWithJson)(id returnObject);
+
+@interface LCHDataManager ()
+
++ (void)getDataWithURL:(NSString *)url success:(SuccessBlockWithJson)successBlock failed:(FailedBlock)failedBlock;
+
+@end
 
 @implementation LCHDataManager
 
@@ -129,30 +141,18 @@ typedef NS_ENUM(NSUInteger, LCHDataManagerErrorCode) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         LCHHomePageLatestJsonModel *latestJsonModel = [LCHHomePageLatestJsonModel yy_modelWithJSON:responseObject];
-        if (latestJsonModel.stories.count > 0) {
+        if (latestJsonModel.stories.count > 0 && latestJsonModel.top_stories.count > 0) {
             
-            NSMutableArray *latestNews = [[NSMutableArray alloc] initWithCapacity:latestJsonModel.stories.count];
+            LCHHomePageBeforeJsonModel *todayNewsJsonModel = [[LCHHomePageBeforeJsonModel alloc] init];
+            todayNewsJsonModel.date = latestJsonModel.date;
+            todayNewsJsonModel.stories = latestJsonModel.stories;
             
             NSMutableArray *topNews = [[NSMutableArray alloc] initWithCapacity:latestJsonModel.top_stories.count];
             
-            //            [latestJsonModel.stories enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            //                LCHHomePageNewsModel *newsModel = [LCHHomePageNewsModel yy_modelWithJSON:obj];
-            //                if (newsModel) {
-            //                    [latestNews insertObject:newsModel atIndex:idx];
-            //                }
-            //            }];
-            latestNews = latestJsonModel.stories;
-            
-            //            [latestJsonModel.top_stories enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            //                LCHHomePageTopNewsModel *newsModel = [LCHHomePageTopNewsModel yy_modelWithJSON:obj];
-            //                if (newsModel) {
-            //                    [topNews insertObject:newsModel atIndex:idx];
-            //                }
-            //            }];
             topNews = latestJsonModel.top_stories;
             
             NSMutableArray *tem = [[NSMutableArray alloc] init];
-            [tem addObject:latestNews];
+            [tem addObject:todayNewsJsonModel];
             [tem addObject:topNews];
             successBlock(tem);
             
@@ -167,7 +167,8 @@ typedef NS_ENUM(NSUInteger, LCHDataManagerErrorCode) {
 }
 
 
-+ (void)getHomePageBeforeNews:(NSString *)url success:(SuccessBlockWithArray)successBlock failed:(FailedBlock)failedBlock {
+
++ (void)getHomePageBeforeNews:(NSString *)url success:(SuccessBlock)successBlock failed:(FailedBlock)failedBlock {
     
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -179,17 +180,7 @@ typedef NS_ENUM(NSUInteger, LCHDataManagerErrorCode) {
         LCHHomePageBeforeJsonModel *beforeJsonModel = [LCHHomePageBeforeJsonModel yy_modelWithJSON:responseObject];
         
         if (beforeJsonModel.stories.count > 0) {
-            
-            //            NSMutableArray *beforeNews = [[NSMutableArray alloc] initWithCapacity:beforeJsonModel.stories.count];
-            //            [beforeJsonModel.stories enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            //
-            //                LCHHomePageNewsModel *newsModel = [LCHHomePageNewsModel yy_modelWithJSON:obj];
-            //                if (newsModel) {
-            //                    [beforeNews insertObject:newsModel atIndex:idx];
-            //                }
-            //            }];
-            //            beforeNews = beforeJsonModel.stories;
-            successBlock(beforeJsonModel.stories);
+            successBlock(beforeJsonModel);
         } else {
             NSError *error = [[NSError alloc] initWithDomain:@"LCHDataManager:getHomePageBeforeNews" code:LCHDataManagerReturnValueNilError userInfo:nil];
             failedBlock(error);
@@ -200,29 +191,69 @@ typedef NS_ENUM(NSUInteger, LCHDataManagerErrorCode) {
     }];
 }
 
-//+ (void)getHomePageBeforeNews:(NSString *)url success:(SuccessBlock)successBlock failed:(FailedBlock)failedBlock {
-//
-//    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
-//    sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
-//
-//    [sessionManager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-//
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//
-//        LCHHomePageBeforeJsonModel *beforeJsonModel = [LCHHomePageBeforeJsonModel yy_modelWithJSON:responseObject];
-//
-//        if (beforeJsonModel.stories.count > 0) {
-//            successBlock(beforeJsonModel);
-//        } else {
-//            NSError *error = [[NSError alloc] initWithDomain:@"LCHDataManager:getHomePageBeforeNews" code:LCHDataManagerReturnValueNilError userInfo:nil];
-//            failedBlock(error);
-//        }
-//        
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        failedBlock(error);
-//    }];
-//}
++ (void)getDetailNews:(NSString *)url success:(SuccessBlock)successBlock failed:(FailedBlock)failedBlock {
+    
+    [self getDataWithURL:url success:^(id returnObject) {
+        
+        LCHDetailNewsModel *detailNewsModel = [LCHDetailNewsModel yy_modelWithJSON:returnObject];
+        if (detailNewsModel) {
+            successBlock(detailNewsModel);
+        } else {
+            NSError *error = [[NSError alloc] initWithDomain:@"LCHDataManager:getDetailNews" code:LCHDataManagerReturnValueNilError userInfo:nil];
+            failedBlock(error);
+        }
+    } failed:^(NSError *error) {
+        failedBlock(error);
+    }];
+}
 
 
++ (void)getNewsExtraData:(NSString *)url success:(SuccessBlock)successBlock failed:(FailedBlock)failedBlock {
+    
+    [self getDataWithURL:url success:^(id returnObject) {
+        
+        LCHNewsExtraData *newsExtraData = [LCHNewsExtraData yy_modelWithJSON:returnObject];
+        if (newsExtraData) {
+            successBlock(newsExtraData);
+        } else {
+            NSError *error = [[NSError alloc] initWithDomain:@"LCHDataManager:getNewsExtraData" code:LCHDataManagerReturnValueNilError userInfo:nil];
+            failedBlock(error);
+        }
+    } failed:^(NSError *error) {
+        failedBlock(error);
+    }];
+}
+
+
++ (void)getThemeDetailNews:(NSString *)url success:(SuccessBlock)successBlock failed:(FailedBlock)failedBlock {
+    
+    [self getDataWithURL:url success:^(id returnObject) {
+        
+        LCHThemeDetailNewsModel *detailNewsModel = [LCHThemeDetailNewsModel yy_modelWithJSON:returnObject];
+        if (detailNewsModel) {
+            successBlock(detailNewsModel);
+        } else {
+            NSError *error = [[NSError alloc] initWithDomain:@"LCHDataManager:getDetailNews" code:LCHDataManagerReturnValueNilError userInfo:nil];
+            failedBlock(error);
+        }
+    } failed:^(NSError *error) {
+        failedBlock(error);
+    }];
+}
+
++ (void)getDataWithURL:(NSString *)url success:(SuccessBlock)successBlock failed:(FailedBlock)failedBlock {
+    
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [sessionManager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failedBlock(error);
+    }];
+    
+}
 
 @end

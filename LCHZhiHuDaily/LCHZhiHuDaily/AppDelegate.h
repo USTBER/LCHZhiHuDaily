@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "LCHMainViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (nonatomic, strong) LCHMainViewController *mainViewController;
 
 @property (strong, nonatomic) UIWindow *window;
 

@@ -10,6 +10,6 @@
 
 @interface LCHHomePageTableHeaderView : UITableViewHeaderFooterView
 
-@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) NSString *dateString;
 
 @end

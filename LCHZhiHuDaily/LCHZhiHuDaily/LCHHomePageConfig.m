@@ -17,7 +17,7 @@ NSString *const kHomePageCellIdenfitier = @"homePageCellIdenfitier";
 NSString *const kHomePageHeaderFooterViewIdenfitier = @"homePageHeaderFooterViewIdenfitier";
 CGFloat const kHomePageCellHeight = 90;
 CGFloat const kHomePageHeaderHeight = 30;
-CGFloat const kHomePageTableSectionHeaderViewHeight = 35;
+CGFloat const kHomePageTableSectionHeaderViewHeight = 30;
 CGFloat const kHomePageTableHeaderViewHeight = 200;
 
 CGFloat const kHomePageTitleLabelFontSize = 18;

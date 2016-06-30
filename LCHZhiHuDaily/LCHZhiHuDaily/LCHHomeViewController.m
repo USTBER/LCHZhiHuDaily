@@ -15,12 +15,17 @@
 #import "LCHCycleHeadView.h"
 #import "LCHTopHeadView.h"
 #import "LCHHomePageTableHeaderView.h"
+#import "LCHHomePageBeforeJsonModel.h"
+#import "LCHDetailNewsViewController.h"
+#import "LCHContainerController.h"
+
+#import "LCHThemeDetailNewsController.h"
 
 @interface LCHHomeViewController ()
 <UITableViewDataSource, UITableViewDelegate, LCHCycleViewDataSource, LCHCycleViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-//里面装了装有Models的NSMutableArray
+//里面装了装有LCHHomePageLatestJsonModel的NSMutableArray
 @property (nonatomic, strong) NSMutableArray *allHomePageNewsModels;
 @property (nonatomic, strong) NSMutableArray *topNews;
 @property (nonatomic, strong) CircleRefreshView *refreshView;
@@ -31,7 +36,7 @@
 
 - (void)configConstraints;
 - (void)getHomePageData;
-- (void)updateHomePageData;
+- (void)updateHomePageDataWithDate:(NSString *)date;
 
 - (void)handleRefresh;
 - (void)handleMenu:(UIButton *)sender;
@@ -46,9 +51,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor yellowColor];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationController.navigationBarHidden = YES;
     
     [self.view addSubview:self.cycleHeadView];
     [self.view addSubview:self.navigationBar];
@@ -59,6 +64,12 @@
     
     [self configConstraints];
     [self getHomePageData];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -124,19 +135,33 @@
         [self.topNews addObjectsFromArray:models[1]];
         [self.tableView reloadData];
         [self.cycleHeadView reloadData];
-        [self updateHomePageData];
     } failed:^(NSError *err) {
         NSLog(@"%@", err.domain);
     }];
 }
 
-- (void)updateHomePageData {
+- (void)updateHomePageDataWithDate:(NSString *)date {
     
-    NSInteger today = [NSDate todayWithIntType];
-    NSString *parameter = [NSString stringWithFormat:@"%lu", today - self.allHomePageNewsModels.count + 1];
-    [LCHDataManager getHomePageBeforeNews:[KHomePageBeforeNewsAPI stringByAppendingString:parameter] success:^(NSMutableArray *models) {
-        [self.allHomePageNewsModels addObject:models];
+    LCHHomePageBeforeJsonModel *oldestNewsJsonModel = [self.allHomePageNewsModels lastObject];
+    
+    if (![date isEqualToString:oldestNewsJsonModel.date]) {
+        
+        return;
+    }
+    
+    [LCHDataManager getHomePageBeforeNews:[KHomePageBeforeNewsAPI stringByAppendingString:date] success:^(id returnModel) {
+        
+        LCHHomePageBeforeJsonModel *beforeNewsJsonModel = returnModel;
+        [self.allHomePageNewsModels enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            LCHHomePageBeforeJsonModel *downloadedJsonModel = obj;
+            if ([downloadedJsonModel.date isEqualToString:beforeNewsJsonModel.date]) {
+                
+                return ;
+            }
+        }];
+        [self.allHomePageNewsModels addObject:beforeNewsJsonModel];
         [self.tableView reloadData];
+        
     } failed:^(NSError *error) {
         
     }];
@@ -151,16 +176,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    NSMutableArray *homePageModels = self.allHomePageNewsModels[section];
+    LCHHomePageBeforeJsonModel *newsJsonModel = self.allHomePageNewsModels[section];
     
-    return homePageModels.count;
+    return newsJsonModel.stories.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     LCHHomePageCell *homePageCell = [tableView dequeueReusableCellWithIdentifier:kHomePageCellIdenfitier forIndexPath:indexPath];
-    NSMutableArray *homeCellModels = self.allHomePageNewsModels[indexPath.section];
-    LCHHomePageNewsModel *newsModel = homeCellModels[indexPath.row];
+    LCHHomePageBeforeJsonModel *newsJsonModel = self.allHomePageNewsModels[indexPath.section];
+    
+    LCHHomePageNewsModel *newsModel = newsJsonModel.stories[indexPath.row];
     if (newsModel) {
         homePageCell.newsLabel.text = newsModel.title;
         [homePageCell.newsImageView sd_setImageWithURL:[NSURL URLWithString:newsModel.images[0]]];
@@ -173,7 +199,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
+    LCHHomePageBeforeJsonModel *newsJsonModel = self.allHomePageNewsModels[indexPath.section];
+    LCHHomePageNewsModel *newsModel = newsJsonModel.stories[indexPath.row];
+    if (newsModel) {
+        
+        //                LCHDetailNewsViewController *detailNewsViewController = [[LCHDetailNewsViewController alloc] init];
+        //                detailNewsViewController.newsID = [NSString stringWithFormat:@"%ld", (long)newsModel.newsID];
+        //                [self.navigationController pushViewController:detailNewsViewController animated:YES];
+        
+        //        LCHContainerController *containerController = [[LCHContainerController alloc] init];
+        //        containerController.newsID = [NSString stringWithFormat:@"%ld", (long)newsModel.newsID];
+        //        [self.navigationController pushViewController:containerController animated:YES];
+        
+        LCHThemeDetailNewsController *themeDetialNewsController = [[LCHThemeDetailNewsController alloc] init];
+        themeDetialNewsController.newsID = [NSString stringWithFormat:@"%ld", (long)newsModel.newsID];
+        [self.navigationController pushViewController:themeDetialNewsController animated:YES];
+        ;
+        
+        
+    }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -183,16 +228,21 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    return section ? kHomePageTableSectionHeaderViewHeight : 0;
+    return section ? kHeight(kHomePageTableSectionHeaderViewHeight) : CGFLOAT_MIN;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
+    if (section == 0) {
+        
+        return nil;
+    }
     LCHHomePageTableHeaderView *tableHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kHomePageHeaderFooterViewIdenfitier];
     if (!tableHeaderView) {
         tableHeaderView = [[LCHHomePageTableHeaderView alloc] initWithReuseIdentifier:kHomePageHeaderFooterViewIdenfitier];
     }
-    tableHeaderView.date = [NSDate date];
+    LCHHomePageBeforeJsonModel *newsJsonModel = self.allHomePageNewsModels[section];
+    tableHeaderView.dateString = newsJsonModel.date;
     
     return tableHeaderView;
 }
@@ -200,17 +250,30 @@
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     
     if (section == 0) {
-        self.navigationBar.height = 55;
+        
+        [self.navigationBar mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(kHeight(55));
+        }];
         self.titleLabel.alpha = 1;
+    }
+    
+    if (section == self.tableView.numberOfSections - 1) {
+        LCHHomePageBeforeJsonModel *newsJsonModel = self.allHomePageNewsModels[section];
+        NSString *date = newsJsonModel.date;
+        [self updateHomePageDataWithDate:date];
     }
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section {
     
     if (section == 0) {
-        self.navigationBar.height = 20;
-        self.tableView.alpha = 0;
+        [self.navigationBar mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(kHeight(20));
+        }];
+        
+        self.titleLabel.alpha = 0;
     }
+    
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -218,7 +281,6 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     CGFloat offSetY = scrollView.contentOffset.y;
-    
     
     if (offSetY<=0&&offSetY>=-90)  self.navigationBar.alpha = 0;
     else if(offSetY <= 500) self.navigationBar.alpha = offSetY/200;
@@ -249,6 +311,7 @@
 #pragma mark - LCHCycleViewDelegate
 
 - (void)cycleView:(LCHCycleView *)cycleView didSelectAtIndex:(NSInteger)index {
+    
     
     
 }
@@ -352,7 +415,6 @@
     _cycleHeadView = [LCHCycleHeadView attachToScrollView:self.tableView];
     _cycleHeadView.delegate = self;
     _cycleHeadView.dataSource = self;
-    _cycleHeadView.backgroundColor = [UIColor greenColor];
     
     return _cycleHeadView;
 }
@@ -368,12 +430,6 @@
     _navigationBar.alpha = 0;
     
     return _navigationBar;
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
-    NSLog(@"%s", __func__);
-    
 }
 
 

@@ -10,4 +10,6 @@
 
 @interface LCHMainViewController : MMDrawerController
 
+@property (nonatomic, strong) UINavigationController *naviController;
+
 @end
