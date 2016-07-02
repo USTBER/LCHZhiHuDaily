@@ -22,6 +22,7 @@
 @property (nonatomic, strong) LCHThemeDetailNewsModel *themeDetailNewsModel;
 @property (nonatomic, strong) LCHThemeNewsTool *tool;
 @property (nonatomic, strong) UIApplication *sharedApplication;
+@property (nonatomic, assign) BOOL shouldReloadData;
 
 - (void)configConstraints;
 - (void)getThemeData;
@@ -39,15 +40,21 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.detailNewsView];
     self.sharedApplication = [UIApplication sharedApplication];
+    self.shouldReloadData = YES;
     [self configConstraints];
-    [self getThemeData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    if (self.shouldReloadData) {
+        [self getThemeData];
+    }
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     [appDelegate.mainViewController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 }
 
 
@@ -100,9 +107,10 @@
             }
         }
         [self.detailNewsView reloadData];
-        //        [self.view setNeedsLayout];
-        //        [self.view layoutIfNeeded];
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
         [self.view setNeedsDisplay];
+                self.shouldReloadData = NO;
         
         
     } failed:^(NSError *error) {
@@ -193,13 +201,31 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     
+    NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%'";
+    [webView stringByEvaluatingJavaScriptFromString:str];
     
     
+    webView.scalesPageToFit = YES;
     NSString *height_str= [webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
     
-    CGFloat height = [height_str floatValue];
-    NSLog(@"in origin height is %f", height);
     
+    
+    //js方法遍历图片添加点击事件 返回图片个数
+    static  NSString * const jsGetImages =
+    @"function getImages(){\
+    var objs = document.getElementsByTagName(\"img\");\
+    for(var i=0;i<objs.length;i++){\
+    objs[i].onclick=function(){\
+    document.location=\"myweb:imageClick:\"+this.src;\
+    };\
+    };\
+    return objs.length;\
+    };";
+    
+    [webView stringByEvaluatingJavaScriptFromString:jsGetImages];//注入js方法
+    [webView stringByEvaluatingJavaScriptFromString:@"getImages()"];
+    
+    CGFloat height = [height_str floatValue];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self.detailNewsView resetFooterConstraints:height];
     

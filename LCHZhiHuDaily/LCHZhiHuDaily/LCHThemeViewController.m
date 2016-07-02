@@ -59,7 +59,14 @@
     [self.view addSubview:self.refreshView];
     
     [self configConstraints];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self getThemeNewsData];
+    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -124,7 +131,7 @@
         
         return;
     }
-
+    
     NSString *url = [KThemeNewsAPI stringByAppendingString:[NSString stringWithFormat:@"%ld",(long)self.themeModel.themeID]];
     
     [LCHDataManager getThemeNews:url success:^(NSMutableArray *models) {
@@ -140,7 +147,7 @@
                 [newsIDs insertObject:newsID atIndex:idx];
             }];
             self.tool.newsIDs = newsIDs;
-//            self.tool.currentIndex = 0;
+            //            self.tool.currentIndex = 0;
         });
         
     } failed:^(NSError *error) {
@@ -196,10 +203,12 @@
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     LCHThemeNewsModel *newsModel = self.themeNewsModels[indexPath.row];
-    LCHThemeContainController *containController = [[LCHThemeContainController alloc] init];
-    containController.newsID = [NSString stringWithFormat:@"%ld", (long)newsModel.newsID];
-//    self.tool.currentIndex = indexPath.row;
-    [self.navigationController pushViewController:containController animated:YES];
+    
+    if (newsModel) {
+                LCHThemeContainController *containController = [[LCHThemeContainController alloc] init];
+                containController.newsID = [NSString stringWithFormat:@"%ld", (long)newsModel.newsID];
+                [self.navigationController pushViewController:containController animated:YES];
+    }
 }
 
 #pragma mark - lazy loading

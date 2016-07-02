@@ -56,7 +56,6 @@ typedef void (^ConfigConstraintsBlock)();
         
         _webView = [[UIWebView alloc] init];
         _webView.scrollView.delegate = self;
-        _webView.scrollView.delegate = self;
         _webView.backgroundColor = [UIColor whiteColor];
         
         _topHeadView = [[LCHTopHeadView alloc] init];
@@ -100,8 +99,6 @@ typedef void (^ConfigConstraintsBlock)();
 
 - (void)resetFooterConstraints:(CGFloat)height {
     
-    NSLog(@"height is %f", height);
-    
     if ([self isLastNewsFromDataSource]) {
         [_lastArticleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.offset(height + kThemeDetailNewsLastLabelTopPadding);
@@ -124,11 +121,9 @@ typedef void (^ConfigConstraintsBlock)();
 
 - (void)handleNext {
     
-    
     if ([self.delegate respondsToSelector:@selector(loadNextNews:)]) {
         [self.delegate loadNextNews:self];
     }
-    
 }
 
 - (void)setUpSubviewsAndConstraints {
@@ -340,7 +335,7 @@ typedef void (^ConfigConstraintsBlock)();
         [weakSelf addSubview:weakWebView];
         [weakWebView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.offset((kThemeDetailNewsViewWebViewTopPadding));
-            make.bottom.offset((kThemeDetailNewsViewWebViewBottomPadding));
+            make.bottom.offset(-(kThemeDetailNewsViewWebViewBottomPadding));
             make.left.and.right.offset(0);
         }];
     };
@@ -352,7 +347,7 @@ typedef void (^ConfigConstraintsBlock)();
         
         [weakWebView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.offset((kThemeDetailNewsViewWebViewTopPadding));
-            make.bottom.offset((kThemeDetailNewsViewWebViewBottomPadding));
+            make.bottom.offset(-(kThemeDetailNewsViewWebViewBottomPadding));
             make.left.and.right.offset(0);
         }];
         [weakTopHeadView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -367,7 +362,7 @@ typedef void (^ConfigConstraintsBlock)();
         [weakSelf addSubview:weakRecommendersView];
         [weakWebView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.offset((kThemeDetailNewsViewRecommendsViewHeight + kThemeDetialNewsViewStatusBarHeight));
-            make.bottom.offset((kThemeDetailNewsViewWebViewBottomPadding));
+            make.bottom.offset(-(kThemeDetailNewsViewWebViewBottomPadding));
             make.left.and.right.offset(0);
         }];
         
@@ -390,7 +385,7 @@ typedef void (^ConfigConstraintsBlock)();
         
         [weakWebView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.offset((kThemeDetailNewsViewWebViewTopPadding));
-            make.bottom.offset((kThemeDetailNewsViewWebViewBottomPadding));
+            make.bottom.offset(-(kThemeDetailNewsViewWebViewBottomPadding));
             make.left.and.right.offset(0);
         }];
         
