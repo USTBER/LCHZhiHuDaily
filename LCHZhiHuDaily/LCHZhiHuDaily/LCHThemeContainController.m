@@ -13,6 +13,7 @@
 #import "LCHConsoleBarConfig.h"
 #import "AppDelegate.h"
 
+
 @interface LCHThemeContainController ()
 <UIScrollViewDelegate, LCHThemeDetailNewsControllerDelegate, LCHConsoleBarDelegate, LCHConsoleDataSource>
 
@@ -37,6 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.scrollView];
     
@@ -78,6 +80,11 @@
 
 - (void)getNewsExtraData {
     
+    if (!self.newsID) {
+        
+        return;
+    }
+    
     NSString *url = [kNewsExtraDataAPI stringByAppendingString:self.newsID];
     
     [LCHDataManager getNewsExtraData:url success:^(id returnModel) {
@@ -107,9 +114,8 @@
         [UIView animateWithDuration:0.3 animations:^{
             self.scrollView.contentOffset = CGPointMake(0, number * kScreenHeight);
         } completion:^(BOOL finished) {
-            [self.themeDetailNewsController removeFromParentViewController];
-            [self.themeDetailNewsController.view removeFromSuperview];
-            self.themeDetailNewsController = nil;
+//            [self.themeDetailNewsController removeFromParentViewController];
+//            [self.themeDetailNewsController.view removeFromSuperview];
             self.scrollView.contentOffset = CGPointMake(0, kScreenHeight);
             self.themeDetailNewsController = dvc;
             [self.scrollView addSubview:self.themeDetailNewsController.view];
@@ -150,6 +156,7 @@
     
     self.newsID = newsID;
     [self setContentOffset:0.f];
+    
 }
 
 - (void)scrollToNextNews:(NSString *)newsID {

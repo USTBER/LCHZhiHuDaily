@@ -37,7 +37,7 @@
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 1), dispatch_get_main_queue(), ^ {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 2), dispatch_get_main_queue(), ^ {
         
         //初始化侧拉的ViewController
         LCHLeftSideViewController *leftSideViewController = [[LCHLeftSideViewController alloc] init];
@@ -111,6 +111,5 @@
     
     return _themeViewController;
 }
-
 
 @end

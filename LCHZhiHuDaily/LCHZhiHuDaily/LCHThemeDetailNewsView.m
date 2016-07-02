@@ -68,7 +68,7 @@ typedef void (^ConfigConstraintsBlock)();
         _firstArticleLabel = [[UILabel alloc] init];
         _firstArticleLabel.textAlignment = NSTextAlignmentCenter;
         _firstArticleLabel.font = [UIFont systemFontOfSize:kThemeDetailNewsFirstLabelFontSize];
-        _firstArticleLabel.textColor = [UIColor whiteColor];
+        _firstArticleLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1];
         _firstArticleLabel.text = kThemeDetailNewsFirstLabelText;
         
         _lastArticleLabel = [[UILabel alloc] init];
@@ -100,6 +100,8 @@ typedef void (^ConfigConstraintsBlock)();
 
 - (void)resetFooterConstraints:(CGFloat)height {
     
+    NSLog(@"height is %f", height);
+    
     if ([self isLastNewsFromDataSource]) {
         [_lastArticleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.offset(height + kThemeDetailNewsLastLabelTopPadding);
@@ -122,9 +124,11 @@ typedef void (^ConfigConstraintsBlock)();
 
 - (void)handleNext {
     
+    
     if ([self.delegate respondsToSelector:@selector(loadNextNews:)]) {
         [self.delegate loadNextNews:self];
     }
+    
 }
 
 - (void)setUpSubviewsAndConstraints {
@@ -196,6 +200,10 @@ typedef void (^ConfigConstraintsBlock)();
 - (void)setUpData {
     
     NSString *url = [self webURLFromDataSource];
+    if (!url) {
+        
+        return;
+    }
     
     [_webView loadHTMLString:url baseURL:nil];
     
@@ -281,6 +289,8 @@ typedef void (^ConfigConstraintsBlock)();
         }
         
         CGFloat offSetY = scrollView.contentOffset.y + offsetHeight;
+        
+        
         if (offSetY<=0&&offSetY>=-(90)) {
             
             [_topHeadView mas_updateConstraints:^(MASConstraintMaker *make) {

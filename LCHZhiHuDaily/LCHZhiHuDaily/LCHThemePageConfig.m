@@ -36,7 +36,6 @@ CGFloat const kRefreshViewRightPadding = 10;
 CGFloat const kRefreshViewWidth = 20;
 CGFloat const kRefreshViewHeight = 20;
 
-
 CGFloat const kCellTitleLabelFontSize = 16;
 CGFloat const kCellTitleLabelTopPadding = 15;
 CGFloat const kCellTitleLabelLeftPadding = 15;

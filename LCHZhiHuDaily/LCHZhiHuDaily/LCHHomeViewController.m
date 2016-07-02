@@ -18,8 +18,9 @@
 #import "LCHHomePageBeforeJsonModel.h"
 #import "LCHDetailNewsViewController.h"
 #import "LCHContainerController.h"
-
+#import "LCHThemeContainController.h"
 #import "LCHThemeDetailNewsController.h"
+#import "LCHThemeNewsTool.h"
 
 @interface LCHHomeViewController ()
 <UITableViewDataSource, UITableViewDelegate, LCHCycleViewDataSource, LCHCycleViewDelegate>
@@ -33,6 +34,8 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) LCHCycleHeadView *cycleHeadView;
 @property (nonatomic, strong) UIView *navigationBar;
+@property (nonatomic, strong) LCHThemeNewsTool *tool;
+@property (nonatomic, strong) NSMutableArray *newsIDs;
 
 - (void)configConstraints;
 - (void)getHomePageData;
@@ -135,6 +138,18 @@
         [self.topNews addObjectsFromArray:models[1]];
         [self.tableView reloadData];
         [self.cycleHeadView reloadData];
+        
+        /**
+         *  更新newsIDs的内容，用于前后新闻跳转
+         */
+        @autoreleasepool {
+            LCHHomePageBeforeJsonModel *beforeJsonModel = models[0];
+            [beforeJsonModel.stories enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                LCHHomePageNewsModel *newsModel = obj;
+                NSString *newsID = [NSString stringWithFormat:@"%ld", (long)newsModel.newsID];
+                [self.newsIDs insertObject:newsID atIndex:idx];
+            }];
+        }
     } failed:^(NSError *err) {
         NSLog(@"%@", err.domain);
     }];
@@ -162,6 +177,17 @@
         [self.allHomePageNewsModels addObject:beforeNewsJsonModel];
         [self.tableView reloadData];
         
+        /**
+         *  更新newsIDs的内容，用于前后新闻跳转
+         */
+        @autoreleasepool {
+            NSInteger newsCount = self.newsIDs.count;
+            [beforeNewsJsonModel.stories enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                LCHHomePageNewsModel *newsModel = obj;
+                NSString *newsID = [NSString stringWithFormat:@"%ld", (long)newsModel.newsID];
+                [self.newsIDs insertObject:newsID atIndex:idx + newsCount];
+            }];
+        }
     } failed:^(NSError *error) {
         
     }];
@@ -201,23 +227,14 @@
     
     LCHHomePageBeforeJsonModel *newsJsonModel = self.allHomePageNewsModels[indexPath.section];
     LCHHomePageNewsModel *newsModel = newsJsonModel.stories[indexPath.row];
+    
     if (newsModel) {
-        
-        //                LCHDetailNewsViewController *detailNewsViewController = [[LCHDetailNewsViewController alloc] init];
-        //                detailNewsViewController.newsID = [NSString stringWithFormat:@"%ld", (long)newsModel.newsID];
-        //                [self.navigationController pushViewController:detailNewsViewController animated:YES];
-        
-        //        LCHContainerController *containerController = [[LCHContainerController alloc] init];
-        //        containerController.newsID = [NSString stringWithFormat:@"%ld", (long)newsModel.newsID];
-        //        [self.navigationController pushViewController:containerController animated:YES];
-        
-        LCHThemeDetailNewsController *themeDetialNewsController = [[LCHThemeDetailNewsController alloc] init];
-        themeDetialNewsController.newsID = [NSString stringWithFormat:@"%ld", (long)newsModel.newsID];
-        [self.navigationController pushViewController:themeDetialNewsController animated:YES];
-        ;
-        
-        
+        LCHThemeContainController *themeContainController = [[LCHThemeContainController alloc] init];
+        themeContainController.newsID = [NSString stringWithFormat:@"%ld", (long)newsModel.newsID];
+        self.tool.newsIDs = self.newsIDs;
+        [self.navigationController pushViewController:themeContainController animated:YES];
     }
+    
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
@@ -432,5 +449,27 @@
     return _navigationBar;
 }
 
+- (LCHThemeNewsTool *)tool {
+    
+    if (_tool) {
+        
+        return _tool;
+    }
+    _tool = [LCHThemeNewsTool sharedThemeNewsTool];
+    
+    return _tool;
+}
+
+- (NSMutableArray *)newsIDs {
+    
+    if (_newsIDs) {
+        
+        return _newsIDs;
+    }
+    _newsIDs = [[NSMutableArray alloc] init];
+    
+    return _newsIDs;
+    
+}
 
 @end

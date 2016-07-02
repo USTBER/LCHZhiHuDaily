@@ -58,7 +58,7 @@ static float const animatinDuration = 0.2f;
     [self addSubview:self.label];
     [self addSubview:self.arrowImage];
     
-    self.arrowImage.frame = CGRectMake(130,5, 15,20);
+    self.arrowImage.frame = CGRectMake(kWidth(115),5, 15,20);
     self.label.x = self.arrowImage.x + self.arrowImage.width + 10;
     self.label.centerY = self.arrowImage.centerY;
     

@@ -72,6 +72,10 @@
 		18B464851D2124DB00CD02AA /* LCHRecommendersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B464841D2124DB00CD02AA /* LCHRecommendersView.m */; };
 		18B464921D212C5A00CD02AA /* LCHDetailNewsConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B464911D212C5A00CD02AA /* LCHDetailNewsConfig.m */; };
 		18B464951D21309400CD02AA /* LCHThemeDetailNewsConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B464941D21309400CD02AA /* LCHThemeDetailNewsConfig.m */; };
+		18F4D7091D26084600CE0E28 /* LCHThemeNewsTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4D7081D26084600CE0E28 /* LCHThemeNewsTool.m */; };
+		18F4D7161D26717800CE0E28 /* LCHCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4D7151D26717800CE0E28 /* LCHCommentController.m */; };
+		18F4D7191D2671AC00CE0E28 /* LCHCommentPageConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4D7181D2671AC00CE0E28 /* LCHCommentPageConfig.m */; };
+		18F4D71C1D2671DC00CE0E28 /* LCHCommentBottomBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4D71B1D2671DC00CE0E28 /* LCHCommentBottomBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -203,6 +207,14 @@
 		18B464911D212C5A00CD02AA /* LCHDetailNewsConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHDetailNewsConfig.m; sourceTree = "<group>"; };
 		18B464931D21309400CD02AA /* LCHThemeDetailNewsConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHThemeDetailNewsConfig.h; sourceTree = "<group>"; };
 		18B464941D21309400CD02AA /* LCHThemeDetailNewsConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHThemeDetailNewsConfig.m; sourceTree = "<group>"; };
+		18F4D7071D26084600CE0E28 /* LCHThemeNewsTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHThemeNewsTool.h; sourceTree = "<group>"; };
+		18F4D7081D26084600CE0E28 /* LCHThemeNewsTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHThemeNewsTool.m; sourceTree = "<group>"; };
+		18F4D7141D26717800CE0E28 /* LCHCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHCommentController.h; sourceTree = "<group>"; };
+		18F4D7151D26717800CE0E28 /* LCHCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHCommentController.m; sourceTree = "<group>"; };
+		18F4D7171D2671AC00CE0E28 /* LCHCommentPageConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHCommentPageConfig.h; sourceTree = "<group>"; };
+		18F4D7181D2671AC00CE0E28 /* LCHCommentPageConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHCommentPageConfig.m; sourceTree = "<group>"; };
+		18F4D71A1D2671DC00CE0E28 /* LCHCommentBottomBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCHCommentBottomBar.h; sourceTree = "<group>"; };
+		18F4D71B1D2671DC00CE0E28 /* LCHCommentBottomBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCHCommentBottomBar.m; sourceTree = "<group>"; };
 		23D8F48A09A952F51417A663 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2F817DCF237A046B6A3D16AB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7C4A325F358764FA8AFAC516 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,6 +261,7 @@
 				1880CAE81D0E8B4B00F47E02 /* HomePage */,
 				1880CAE91D0E8B5A00F47E02 /* DetailNewsPage */,
 				18B4645A1D20C51700CD02AA /* LeafPage */,
+				18F4D70F1D2670DB00CE0E28 /* CommentPage */,
 				1880CAE61D0E8B3A00F47E02 /* LaunchPage */,
 				1880CAE51D0E8B2D00F47E02 /* AppDelegate */,
 				1880CACB1D0E894800F47E02 /* Supporting Files */,
@@ -292,6 +305,7 @@
 		1880CAE71D0E8B4200F47E02 /* ThemePage */ = {
 			isa = PBXGroup;
 			children = (
+				18F4D7051D26082C00CE0E28 /* Tool */,
 				1880CB0F1D0E8F1800F47E02 /* Config */,
 				1880CAFB1D0E8C1A00F47E02 /* View */,
 				1880CAFA1D0E8C1400F47E02 /* Model */,
@@ -427,8 +441,6 @@
 			children = (
 				18B463D31D1A537B00CD02AA /* LCHDetailNewsModel.h */,
 				18B463D41D1A537B00CD02AA /* LCHDetailNewsModel.m */,
-				18B463E51D1BFD8700CD02AA /* LCHNewsExtraData.h */,
-				18B463E61D1BFD8700CD02AA /* LCHNewsExtraData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -436,8 +448,6 @@
 		1880CAF51D0E8BFA00F47E02 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18B463DC1D1BDA9F00CD02AA /* LCHConsoleBar.h */,
-				18B463DD1D1BDA9F00CD02AA /* LCHConsoleBar.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -567,8 +577,6 @@
 			children = (
 				18B464901D212C5A00CD02AA /* LCHDetailNewsConfig.h */,
 				18B464911D212C5A00CD02AA /* LCHDetailNewsConfig.m */,
-				18B463DF1D1BE39800CD02AA /* LCHConsoleBarConfig.h */,
-				18B463E01D1BE39800CD02AA /* LCHConsoleBarConfig.m */,
 			);
 			name = Config;
 			sourceTree = "<group>";
@@ -641,8 +649,8 @@
 			children = (
 				18B4645E1D20C54700CD02AA /* Config */,
 				18B4645D1D20C53700CD02AA /* Model */,
-				18B4645C1D20C53200CD02AA /* Controller */,
 				18B4645B1D20C52C00CD02AA /* View */,
+				18B4645C1D20C53200CD02AA /* Controller */,
 			);
 			name = LeafPage;
 			sourceTree = "<group>";
@@ -691,10 +699,9 @@
 			isa = PBXGroup;
 			children = (
 				18B4647F1D211ED100CD02AA /* Config */,
-				18B4647E1D211ECA00CD02AA /* Tools */,
-				18B4647D1D211EC500CD02AA /* Controller */,
 				18B4647C1D211EC100CD02AA /* Model */,
 				18B4647B1D211EBB00CD02AA /* View */,
+				18B4647D1D211EC500CD02AA /* Controller */,
 			);
 			name = ThemeDetailNewsPage;
 			sourceTree = "<group>";
@@ -702,6 +709,8 @@
 		18B4647B1D211EBB00CD02AA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18B463DC1D1BDA9F00CD02AA /* LCHConsoleBar.h */,
+				18B463DD1D1BDA9F00CD02AA /* LCHConsoleBar.m */,
 				18B464801D2123EA00CD02AA /* LCHThemeDetailNewsView.h */,
 				18B464811D2123EA00CD02AA /* LCHThemeDetailNewsView.m */,
 				18B464831D2124DB00CD02AA /* LCHRecommendersView.h */,
@@ -717,6 +726,8 @@
 				1854C6F71D225912003760B5 /* LCHThemeDetailNewsModel.m */,
 				1854C6F91D2267F9003760B5 /* LCHRecommenders.h */,
 				1854C6FA1D2267F9003760B5 /* LCHRecommenders.m */,
+				18B463E51D1BFD8700CD02AA /* LCHNewsExtraData.h */,
+				18B463E61D1BFD8700CD02AA /* LCHNewsExtraData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -732,18 +743,67 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		18B4647E1D211ECA00CD02AA /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Tools;
-			sourceTree = "<group>";
-		};
 		18B4647F1D211ED100CD02AA /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				18B463DF1D1BE39800CD02AA /* LCHConsoleBarConfig.h */,
+				18B463E01D1BE39800CD02AA /* LCHConsoleBarConfig.m */,
 				18B464931D21309400CD02AA /* LCHThemeDetailNewsConfig.h */,
 				18B464941D21309400CD02AA /* LCHThemeDetailNewsConfig.m */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		18F4D7051D26082C00CE0E28 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				18F4D7071D26084600CE0E28 /* LCHThemeNewsTool.h */,
+				18F4D7081D26084600CE0E28 /* LCHThemeNewsTool.m */,
+			);
+			name = Tool;
+			sourceTree = "<group>";
+		};
+		18F4D70F1D2670DB00CE0E28 /* CommentPage */ = {
+			isa = PBXGroup;
+			children = (
+				18F4D7131D26715000CE0E28 /* Config */,
+				18F4D7111D26713000CE0E28 /* Model */,
+				18F4D7101D26711400CE0E28 /* View */,
+				18F4D7121D26713600CE0E28 /* Controller */,
+			);
+			name = CommentPage;
+			sourceTree = "<group>";
+		};
+		18F4D7101D26711400CE0E28 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18F4D71A1D2671DC00CE0E28 /* LCHCommentBottomBar.h */,
+				18F4D71B1D2671DC00CE0E28 /* LCHCommentBottomBar.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		18F4D7111D26713000CE0E28 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		18F4D7121D26713600CE0E28 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18F4D7141D26717800CE0E28 /* LCHCommentController.h */,
+				18F4D7151D26717800CE0E28 /* LCHCommentController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		18F4D7131D26715000CE0E28 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				18F4D7171D2671AC00CE0E28 /* LCHCommentPageConfig.h */,
+				18F4D7181D2671AC00CE0E28 /* LCHCommentPageConfig.m */,
 			);
 			name = Config;
 			sourceTree = "<group>";
@@ -888,6 +948,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F4D71C1D2671DC00CE0E28 /* LCHCommentBottomBar.m in Sources */,
 				1880CB881D128C4500F47E02 /* LCHHomePageCell.m in Sources */,
 				1880CBAD1D13F9DE00F47E02 /* UIColor+LCHRandomColor.m in Sources */,
 				1880CB851D12814500F47E02 /* NSTimer+LCHAddition.m in Sources */,
@@ -912,6 +973,7 @@
 				1880CB2D1D0EC7EB00F47E02 /* LCHHomeViewController.m in Sources */,
 				1880CB401D0FA72900F47E02 /* LCHLeftSideDrawerCell.m in Sources */,
 				1880CB5C1D10FE1B00F47E02 /* LCHThemeNewsCell.m in Sources */,
+				18F4D7161D26717800CE0E28 /* LCHCommentController.m in Sources */,
 				18B464681D20C79C00CD02AA /* LCHLeafPageTopBar.m in Sources */,
 				18B464621D20C5B200CD02AA /* LCHLeafController.m in Sources */,
 				1880CB301D0EC81200F47E02 /* LCHDetailNewsViewController.m in Sources */,
@@ -926,12 +988,14 @@
 				1880CB761D127AE300F47E02 /* LCHHomePageNewsModel.m in Sources */,
 				18B464541D1D3BD100CD02AA /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				1880CB701D11840A00F47E02 /* DetailHeaderView.m in Sources */,
+				18F4D7091D26084600CE0E28 /* LCHThemeNewsTool.m in Sources */,
 				18B464591D20BBE100CD02AA /* LCHBlackBottomBar.m in Sources */,
 				189B3AD91D222BF3009A9008 /* LCHThemeDetailNewsController.m in Sources */,
 				18B464821D2123EA00CD02AA /* LCHThemeDetailNewsView.m in Sources */,
 				18886E371D17D63A0076A384 /* LCHHomePageTopNewsModel.m in Sources */,
 				1880CBAA1D13DF2900F47E02 /* LCHCycleHeadView.m in Sources */,
 				1854C6F81D225912003760B5 /* LCHThemeDetailNewsModel.m in Sources */,
+				18F4D7191D2671AC00CE0E28 /* LCHCommentPageConfig.m in Sources */,
 				1880CB161D0E8F5800F47E02 /* LCHLaunchConfig.m in Sources */,
 				1880CB9E1D13CD1500F47E02 /* LCHTopHeaderConfig.m in Sources */,
 				1880CB501D10F17300F47E02 /* LCHThemeNewsJsonModel.m in Sources */,

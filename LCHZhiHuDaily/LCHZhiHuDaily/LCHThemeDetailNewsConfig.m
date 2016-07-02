@@ -35,7 +35,7 @@ CGFloat const kThemeDetailNewsLastLabelTopPadding = 20;
 
 CGFloat const kThemeDetailNewsDetailHeaderViewTopPadding = 45;
 CGFloat const kThemeDetailNewsDetailHeaderViewInImageTopPadding = 20;
-CGFloat const kThemeDetailNewsDetailFooterViewlTopPadding = 20;
+CGFloat const kThemeDetailNewsDetailFooterViewlTopPadding = 0;
 
 CGFloat const kThemeDetailNewsDetailViewDistance = 300;
 @end

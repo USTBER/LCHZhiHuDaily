@@ -15,6 +15,7 @@
 #import "LCHThemeDetailNewsController.h"
 
 #import "LCHThemeContainController.h"
+#import "LCHThemeNewsTool.h"
 
 @interface LCHThemeViewController ()
 <UITableViewDataSource, UITableViewDelegate>
@@ -26,7 +27,7 @@
 @property (nonatomic, strong) UIButton *backButton;
 @property (nonatomic, strong) UIButton *addButton;
 @property (nonatomic, strong) CircleRefreshView *refreshView;
-
+@property (nonatomic, strong) LCHThemeNewsTool *tool;
 //数据源
 @property (nonatomic, strong) NSMutableArray *themeNewsModels;
 
@@ -119,12 +120,29 @@
 
 - (void)getThemeNewsData {
     
+    if (!self.themeModel.themeID) {
+        
+        return;
+    }
+
     NSString *url = [KThemeNewsAPI stringByAppendingString:[NSString stringWithFormat:@"%ld",(long)self.themeModel.themeID]];
     
     [LCHDataManager getThemeNews:url success:^(NSMutableArray *models) {
         self.themeNewsModels = models;
         [self.tableView reloadData];
         [self.refreshView endRefreshing];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSMutableArray *newsIDs = [[NSMutableArray alloc] initWithCapacity:models.count];
+            [models enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                LCHThemeNewsModel *model = obj;
+                NSString *newsID = [NSString stringWithFormat:@"%ld", (long)model.newsID];
+                [newsIDs insertObject:newsID atIndex:idx];
+            }];
+            self.tool.newsIDs = newsIDs;
+//            self.tool.currentIndex = 0;
+        });
+        
     } failed:^(NSError *error) {
         
     }];
@@ -177,19 +195,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
     LCHThemeNewsModel *newsModel = self.themeNewsModels[indexPath.row];
-//    LCHThemeDetailNewsController *themeDetailNewsController = [[LCHThemeDetailNewsController alloc] init];
-//    themeDetailNewsController.newsID = [NSString stringWithFormat:@"%ld", (long)newsModel.newsID];
-//    [self.navigationController pushViewController:themeDetailNewsController animated:YES];
-
-    
     LCHThemeContainController *containController = [[LCHThemeContainController alloc] init];
     containController.newsID = [NSString stringWithFormat:@"%ld", (long)newsModel.newsID];
-    
+//    self.tool.currentIndex = indexPath.row;
     [self.navigationController pushViewController:containController animated:YES];
-
-
 }
 
 #pragma mark - lazy loading
@@ -294,5 +304,16 @@
     self.titleLabel.text = themeModel.name;
     [self.topImageView sd_setImageWithURL:[NSURL URLWithString:themeModel.thumbnail]];
     [self getThemeNewsData];
+}
+
+- (LCHThemeNewsTool *)tool {
+    
+    if (_tool) {
+        
+        return _tool;
+    }
+    _tool = [LCHThemeNewsTool sharedThemeNewsTool];
+    
+    return _tool;
 }
 @end

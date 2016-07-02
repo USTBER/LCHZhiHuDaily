@@ -38,7 +38,8 @@ static float const animatinDuration = 0.2f;
     footerView.target = target;
     footerView.action = action;
     footerView.x = 0;
-    footerView.backgroundColor = [UIColor clearColor];
+//    footerView.backgroundColor = [UIColor clearColor];
+    footerView.backgroundColor = [UIColor redColor];
     footerView.size = CGSizeMake(kScreenWidth, 30);
     
     [footerView initViews];
@@ -57,7 +58,7 @@ static float const animatinDuration = 0.2f;
     [self addSubview:self.label];
     [self addSubview:self.arrowImage];
     
-    self.arrowImage.frame = CGRectMake(130,5, 15,20);
+    self.arrowImage.frame = CGRectMake(kWidth(115),5, 15,20);
     self.label.x = self.arrowImage.x + self.arrowImage.width + 10;
     self.label.centerY = self.arrowImage.centerY;
     
@@ -108,7 +109,7 @@ static float const animatinDuration = 0.2f;
                                                   [UIFont systemFontOfSize:13]
                                               ,
                                               NSForegroundColorAttributeName:
-                                                  [UIColor grayColor]}];
+                                                  [UIColor redColor]}];
         [_label sizeToFit];
     }
     return _label;

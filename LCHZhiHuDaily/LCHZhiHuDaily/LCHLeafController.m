@@ -158,6 +158,7 @@
         return _webView;
     }
     _webView = [[UIWebView alloc] init];
+    _webView.backgroundColor = [UIColor whiteColor];
     _webView.delegate = self;
     
     return _webView;
