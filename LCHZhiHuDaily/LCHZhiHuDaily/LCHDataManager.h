@@ -78,7 +78,7 @@ typedef void (^SuccessBlock)(id returnModel);
 /**
  *  获取某条新闻的额外信息
  *
- *  @param url          获取具体新闻额外信息的的api
+ *  @param url          获取具体新闻额外信息的api
  *  @param successBlock 成功的回调
  *  @param failedBlock  失败的回调
  */
@@ -87,11 +87,29 @@ typedef void (^SuccessBlock)(id returnModel);
 /**
  *  获取某条新闻的具体信息
  *
- *  @param url          获取具体新闻信息的的api
+ *  @param url          获取具体新闻信息的api
  *  @param successBlock 成功的回调
  *  @param failedBlock  失败的回调
  */
 + (void)getThemeDetailNews:(NSString *)url success:(SuccessBlock)successBlock failed:(FailedBlock)failedBlock;
+
+/**
+ *  获取某条新闻的长评论信息
+ *
+ *  @param url          获取具体新闻长评论的api
+ *  @param successBlock 成功的回调
+ *  @param failedBlock  失败的回调
+ */
++ (void)getNewsLongComment:(NSString *)url success:(SuccessBlock)successBlock failed:(FailedBlock)failedBlock;
+
+/**
+ *  获取某条新闻的短评论信息
+ *
+ *  @param url          获取具体新闻短评论的api
+ *  @param successBlock 成功的回调
+ *  @param failedBlock  失败的回调
+ */
++ (void)getNewsShortComment:(NSString *)url success:(SuccessBlock)successBlock failed:(FailedBlock)failedBlock;
 
 
 @end

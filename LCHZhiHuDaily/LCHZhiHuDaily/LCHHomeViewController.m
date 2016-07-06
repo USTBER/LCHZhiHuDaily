@@ -21,6 +21,7 @@
 #import "LCHThemeContainController.h"
 #import "LCHThemeDetailNewsController.h"
 #import "LCHThemeNewsTool.h"
+#import "AppDelegate.h"
 
 @interface LCHHomeViewController ()
 <UITableViewDataSource, UITableViewDelegate, LCHCycleViewDataSource, LCHCycleViewDelegate>
@@ -329,14 +330,20 @@
 
 - (void)cycleView:(LCHCycleView *)cycleView didSelectAtIndex:(NSInteger)index {
     
-    
-    
+    LCHHomePageTopNewsModel *topNewsModel = self.topNews[index];
+    if (topNewsModel) {
+        LCHThemeContainController *themeContainController = [[LCHThemeContainController alloc] init];
+        themeContainController.newsID = [NSString stringWithFormat:@"%ld", (long)topNewsModel.newsID];
+        self.tool.newsIDs = self.newsIDs;
+        [self.navigationController pushViewController:themeContainController animated:YES];
+    }
 }
 
 #pragma mark - target action
 
 - (void)handleMenu:(UIButton *)sender{
-    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate.mainViewController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 - (void)handleRefresh {
@@ -469,7 +476,6 @@
     _newsIDs = [[NSMutableArray alloc] init];
     
     return _newsIDs;
-    
 }
 
 @end

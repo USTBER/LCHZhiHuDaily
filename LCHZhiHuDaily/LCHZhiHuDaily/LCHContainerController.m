@@ -11,6 +11,7 @@
 #import "LCHConsoleBar.h"
 #import "LCHConsoleBarConfig.h"
 #import "LCHNewsExtraData.h"
+#import "LCHCommentController.h"
 #import "AppDelegate.h"
 
 @interface LCHContainerController ()
@@ -106,6 +107,25 @@
     
     
 }
+
+- (void)agreeCurrentNews:(LCHConsoleBar *)consoleBar {
+    
+    
+}
+
+- (void)shareCurrentNews:(LCHConsoleBar *)consoleBar {
+    
+    
+}
+
+- (void)openCommentPage:(LCHConsoleBar *)consoleBar {
+    
+    LCHCommentController *commentController = [[LCHCommentController alloc] init];
+    commentController.newsID = self.newsID;
+    [self.navigationController pushViewController:commentController animated:YES];
+}
+
+
 
 #pragma mark - LCHConsoleDataSource
 

@@ -11,8 +11,8 @@
 #import "LCHConsoleBar.h"
 #import "LCHNewsExtraData.h"
 #import "LCHConsoleBarConfig.h"
+#import "LCHCommentController.h"
 #import "AppDelegate.h"
-
 
 @interface LCHThemeContainController ()
 <UIScrollViewDelegate, LCHThemeDetailNewsControllerDelegate, LCHConsoleBarDelegate, LCHConsoleDataSource>
@@ -109,18 +109,18 @@
 
 - (void)setContentOffset:(CGFloat)number {
     
-        LCHThemeDetailNewsController *dvc = [self configThemeDetailNewsController];
+    LCHThemeDetailNewsController *dvc = [self configThemeDetailNewsController];
     
-        [UIView animateWithDuration:0.3 animations:^{
-            self.scrollView.contentOffset = CGPointMake(0, number * kScreenHeight);
-        } completion:^(BOOL finished) {
-//            [self.themeDetailNewsController removeFromParentViewController];
-//            [self.themeDetailNewsController.view removeFromSuperview];
-            self.scrollView.contentOffset = CGPointMake(0, kScreenHeight);
-            self.themeDetailNewsController = dvc;
-            [self.scrollView addSubview:self.themeDetailNewsController.view];
-            [self addChildViewController:self.themeDetailNewsController];
-        }];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.scrollView.contentOffset = CGPointMake(0, number * kScreenHeight);
+    } completion:^(BOOL finished) {
+        [self.themeDetailNewsController removeFromParentViewController];
+        [self.themeDetailNewsController.view removeFromSuperview];
+        self.scrollView.contentOffset = CGPointMake(0, kScreenHeight);
+        self.themeDetailNewsController = dvc;
+        [self.scrollView addSubview:self.themeDetailNewsController.view];
+        [self addChildViewController:self.themeDetailNewsController];
+    }];
 }
 
 #pragma mark - LCHConsoleBarDelegate
@@ -133,6 +133,23 @@
 - (void)moveToNextDetailNews:(LCHConsoleBar *)consoleBar {
     
     
+}
+
+- (void)agreeCurrentNews:(LCHConsoleBar *)consoleBar {
+    
+    
+}
+
+- (void)shareCurrentNews:(LCHConsoleBar *)consoleBar {
+    
+    
+}
+
+- (void)openCommentPage:(LCHConsoleBar *)consoleBar {
+    
+    LCHCommentController *commentController = [[LCHCommentController alloc] init];
+    commentController.newsID = self.newsID;
+    [self.navigationController pushViewController:commentController animated:YES];
 }
 
 #pragma mark - LCHConsoleDataSource
@@ -163,7 +180,7 @@
     
     self.newsID = newsID;
     [self setContentOffset:2.f];
-
+    
 }
 
 #pragma mark - lazy loading
@@ -177,7 +194,7 @@
     _scrollView = [[UIScrollView alloc] init];
     _scrollView.frame = self.view.bounds;
     _scrollView.contentSize = CGSizeMake(kScreenWidth, kScreenHeight * 3);
-    _scrollView.contentOffset = CGPointMake(0, kScreenHeight);  
+    _scrollView.contentOffset = CGPointMake(0, kScreenHeight);
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.pagingEnabled = YES;

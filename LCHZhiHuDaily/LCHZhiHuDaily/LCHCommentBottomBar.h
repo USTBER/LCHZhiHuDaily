@@ -10,12 +10,15 @@
 
 @class LCHCommentBottomBar;
 
-@protocol LCHCommentBottomBar <NSObject>
+@protocol LCHCommentBottomBarDelegate <NSObject>
 
-
+- (void)didSelectBack:(LCHCommentBottomBar *)commentBar;
+- (void)didSelectWrite:(LCHCommentBottomBar *)commentBar;
 
 @end
 
 @interface LCHCommentBottomBar : UIView
+
+@property (nonatomic, weak) id<LCHCommentBottomBarDelegate> delegate;
 
 @end

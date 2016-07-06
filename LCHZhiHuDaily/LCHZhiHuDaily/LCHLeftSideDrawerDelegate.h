@@ -16,4 +16,8 @@
 
 - (void)switchToOtherTheme:(LCHThemeModel *)themeModel;
 
+- (void)switchToMessage;
+
+- (void)switchToSetting;
+
 @end

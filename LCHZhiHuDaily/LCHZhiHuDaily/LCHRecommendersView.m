@@ -59,8 +59,6 @@
             make.bottom.offset(-0.2);
             make.height.mas_equalTo(0.2);
         }];
-        
-        self.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
     }
     
     return self;

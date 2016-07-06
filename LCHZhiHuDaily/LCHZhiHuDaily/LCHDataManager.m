@@ -19,6 +19,10 @@
 #import "LCHDetailNewsModel.h"
 #import "LCHThemeDetailNewsModel.h"
 #import "LCHNewsExtraData.h"
+#import "LCHLongCommentJsonModel.h"
+#import "LCHLongCommentModel.h"
+#import "LCHShortCommentJsonModel.h"
+#import "LCHShortCommentModel.h"
 
 #import <AFNetworking.h>
 #import <YYModel.h>
@@ -232,6 +236,38 @@ typedef void (^SuccessBlockWithJson)(id returnObject);
         LCHThemeDetailNewsModel *detailNewsModel = [LCHThemeDetailNewsModel yy_modelWithJSON:returnObject];
         if (detailNewsModel) {
             successBlock(detailNewsModel);
+        } else {
+            NSError *error = [[NSError alloc] initWithDomain:@"LCHDataManager:getDetailNews" code:LCHDataManagerReturnValueNilError userInfo:nil];
+            failedBlock(error);
+        }
+    } failed:^(NSError *error) {
+        failedBlock(error);
+    }];
+}
+
++ (void)getNewsLongComment:(NSString *)url success:(SuccessBlock)successBlock failed:(FailedBlock)failedBlock {
+ 
+    [self getDataWithURL:url success:^(id returnObject) {
+        
+        LCHLongCommentJsonModel *longCommentJsonModel = [LCHLongCommentJsonModel yy_modelWithJSON:returnObject];
+        if (longCommentJsonModel) {
+            successBlock(longCommentJsonModel);
+        } else {
+            NSError *error = [[NSError alloc] initWithDomain:@"LCHDataManager:getNewsLongComment" code:LCHDataManagerReturnValueNilError userInfo:nil];
+            failedBlock(error);
+        }
+    } failed:^(NSError *error) {
+        failedBlock(error);
+    }];
+}
+
++ (void)getNewsShortComment:(NSString *)url success:(SuccessBlock)successBlock failed:(FailedBlock)failedBlock {
+    
+    [self getDataWithURL:url success:^(id returnObject) {
+        
+        LCHShortCommentJsonModel *shortCommentJsonModel = [LCHShortCommentJsonModel yy_modelWithJSON:returnObject];
+        if (shortCommentJsonModel) {
+            successBlock(shortCommentJsonModel);
         } else {
             NSError *error = [[NSError alloc] initWithDomain:@"LCHDataManager:getDetailNews" code:LCHDataManagerReturnValueNilError userInfo:nil];
             failedBlock(error);

@@ -13,6 +13,8 @@
 #import "LCHLeftSideViewController.h"
 #import "LCHThemeModel.h"
 #import "AppDelegate.h"
+#import "LCHSettingController.h"
+#import "LCHMessageController.h"
 
 
 #import "LCHLaunchConfig.h"
@@ -82,6 +84,24 @@
     self.themeViewController.themeModel = themeModel;
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.themeViewController];
+    navigationController.navigationBarHidden = YES;
+    
+    [self setCenterViewController:navigationController withCloseAnimation:YES completion:nil];
+}
+
+- (void)switchToMessage {
+    
+    LCHMessageController *messageController = [[LCHMessageController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:messageController];
+    navigationController.navigationBarHidden = YES;
+    
+    [self setCenterViewController:navigationController withCloseAnimation:YES completion:nil];
+}
+
+- (void)switchToSetting {
+    
+    LCHSettingController *settingController = [[LCHSettingController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:settingController];
     navigationController.navigationBarHidden = YES;
     
     [self setCenterViewController:navigationController withCloseAnimation:YES completion:nil];

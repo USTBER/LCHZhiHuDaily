@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<string>我的资料</string>
+	</array>
+	<array>
+		<string>自动离线下载</string>
+	</array>
+	<array>
+		<string>移动网络不下载图片</string>
+		<string>大字号</string>
+	</array>
+	<array>
+		<string>消息推送</string>
+		<string>点评分享到微博</string>
+	</array>
+	<array>
+		<string>去点评</string>
+		<string>去吐槽</string>
+	</array>
+	<array>
+		<string>清除缓存</string>
+	</array>
+</array>
+</plist>

@@ -10,4 +10,6 @@
 
 @interface LCHCommentController : UIViewController
 
+@property (nonatomic, strong) NSString *newsID;
+
 @end

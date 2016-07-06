@@ -213,17 +213,29 @@
 
 - (void)handleAgree:(UIButton *)sender {
     
-    
+    if ([self.delegate respondsToSelector:@selector(agreeCurrentNews:)]) {
+        [self.delegate agreeCurrentNews:self];
+    } else {
+        LCH_LOG_DELEGATE_DID_NOT_RESPONSE_ERROR;
+    }
 }
 
 - (void)handleShare:(UIButton *)sender {
     
-    
+    if ([self.delegate respondsToSelector:@selector(shareCurrentNews:)]) {
+        [self.delegate shareCurrentNews:self];
+    } else {
+        LCH_LOG_DELEGATE_DID_NOT_RESPONSE_ERROR;
+    }
 }
 
 - (void)handleComment:(UIButton *)sender {
     
-    
+    if ([self.delegate respondsToSelector:@selector(openCommentPage:)]) {
+        [self.delegate openCommentPage:self];
+    } else {
+        LCH_LOG_DELEGATE_DID_NOT_RESPONSE_ERROR;
+    }
 }
 
 #pragma mark - setter

@@ -57,8 +57,6 @@
     [super viewDidAppear:animated];
 }
 
-
-
 - (void)dealloc {
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
@@ -117,7 +115,6 @@
         
     }];
 }
-
 
 #pragma mark - LCHThemeDetailNewsViewDataSource
 
@@ -208,8 +205,6 @@
     webView.scalesPageToFit = YES;
     NSString *height_str= [webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
     
-    
-    
     //js方法遍历图片添加点击事件 返回图片个数
     static  NSString * const jsGetImages =
     @"function getImages(){\
@@ -228,18 +223,14 @@
     CGFloat height = [height_str floatValue];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self.detailNewsView resetFooterConstraints:height];
-    
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     NSLog(@"error! happened in %s in domian %@", __func__, error.domain);
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    
-    
     
     NSString *str = request.URL.absoluteString;
     
@@ -262,7 +253,6 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     return YES;
-    
 }
 
 #pragma mark - lazy loading
@@ -302,7 +292,6 @@
     _tool = [LCHThemeNewsTool sharedThemeNewsTool];
     
     return _tool;
-    
 }
 
 - (UIApplication *)sharedApplication {

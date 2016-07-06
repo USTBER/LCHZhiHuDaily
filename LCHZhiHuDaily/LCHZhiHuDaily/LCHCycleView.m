@@ -18,6 +18,9 @@
 @property (nonatomic, strong) NSTimer *automaticScrollTimer;
 @property (nonatomic, strong) UIPageControl *pageControl;
 
+@property (nonatomic, strong) UITapGestureRecognizer *tap;
+- (void)handleTap:(UITapGestureRecognizer *)tap;
+
 - (void)configSubViews;
 
 - (void)automaticScroll;
@@ -76,7 +79,8 @@
             [[NSRunLoop currentRunLoop] run];
         });
         
-
+        _tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        [self addGestureRecognizer:_tap];
     }
     
     return self;
@@ -88,6 +92,13 @@
 }
 
 #pragma mark - private method
+
+- (void)handleTap:(UITapGestureRecognizer *)tap {
+    
+    if ([self.delegate respondsToSelector:@selector(cycleView:didSelectAtIndex:)]) {
+        [self.delegate cycleView:self didSelectAtIndex:_currentPageNum];
+    }
+}
 
 - (void)configSubViews {
     

@@ -16,6 +16,9 @@
 
 - (void)backToThemePage:(LCHConsoleBar *)consoleBar;
 - (void)moveToNextDetailNews:(LCHConsoleBar *)consoleBar;
+- (void)agreeCurrentNews:(LCHConsoleBar *)consoleBar;
+- (void)shareCurrentNews:(LCHConsoleBar *)consoleBar;
+- (void)openCommentPage:(LCHConsoleBar *)consoleBar;
 
 @end
 

@@ -62,7 +62,7 @@ typedef void (^ConfigConstraintsBlock)();
         
         _recommendersView = [[LCHRecommendersView alloc] init];
         
-        self.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
+        self.backgroundColor = [UIColor whiteColor];
         
         _firstArticleLabel = [[UILabel alloc] init];
         _firstArticleLabel.textAlignment = NSTextAlignmentCenter;

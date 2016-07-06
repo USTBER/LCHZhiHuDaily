@@ -17,6 +17,8 @@
 #import "LCHThemeContainController.h"
 #import "LCHThemeNewsTool.h"
 
+#import "AppDelegate.h"
+
 @interface LCHThemeViewController ()
 <UITableViewDataSource, UITableViewDelegate>
 
@@ -159,7 +161,11 @@
 
 - (void)handleBack:(UIButton *)sender {
     
-    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    [delegate.mainViewController toggleDrawerSide:MMDrawerSideLeft
+                                         animated:YES
+                                       completion:nil];
+
 }
 
 - (void)handleAdd:(UIButton *)sender {

@@ -10,6 +10,9 @@
 #import "LCHLeftSideDrawerConfig.h"
 #import "LCHThemeModel.h"
 #import "LCHLeftSideDrawerCell.h"
+#import "LCHLoginController.h"
+#import "LCHMessageController.h"
+#import "LCHSettingController.h"
 
 @interface LCHLeftSideViewController ()
 <UITableViewDataSource, UITableViewDelegate>
@@ -21,6 +24,7 @@
 @property (nonatomic, strong) UIButton *downloadButton;
 @property (nonatomic, strong) UIButton *nightButton;
 @property (nonatomic, strong) UITableView *tableView;
+
 
 - (void)handleLogin:(UIButton *)sender;
 - (void)handleCollection:(UIButton *)sender;
@@ -139,22 +143,32 @@
 
 - (void)handleLogin:(UIButton *)sender {
     
-    
+    LCHLoginController *loginController = [[LCHLoginController alloc] init];
+    [self presentViewController:loginController animated:YES completion:nil];
 }
 
 - (void)handleCollection:(UIButton *)sender {
-    
+    LCHLoginController *loginController = [[LCHLoginController alloc] init];
+    [self presentViewController:loginController animated:YES completion:nil];
     
 }
 
 - (void)handleMessage:(UIButton *)sender {
-    
-    
+    if ([self.delegate respondsToSelector:@selector(switchToMessage)]) {
+        [self.delegate switchToMessage];
+    } else {
+        LCH_LOG_DELEGATE_DID_NOT_RESPONSE_ERROR;
+    }
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathsForSelectedRows][0] animated:NO];
 }
 
 - (void)handleSetting:(UIButton *)sender {
-    
-    
+    if ([self.delegate respondsToSelector:@selector(switchToSetting)]) {
+        [self.delegate switchToSetting];
+    } else {
+        LCH_LOG_DELEGATE_DID_NOT_RESPONSE_ERROR;
+    }
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathsForSelectedRows][0] animated:NO];
 }
 
 - (void)handleDownload:(UIButton *)sender {
